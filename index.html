@@ -1,0 +1,1181 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Confirme sua presença no IPM26 – Imersão de Projetos Multidisciplinares, 13 e 14 de novembro de 2026.">
+<style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>IPM26 Confirmação de Presença</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: plexus field behind everything; left rail = identity + node-chain stepper, right = one glass panel per step */
+:root{
+  --bg:#eef0f2; --panel:rgba(255,255,255,.72); --panel-solid:#ffffff;
+  --ink:#14171a; --ink-2:#59626b; --ink-3:#8b939b;
+  --line:#d4d9de; --line-strong:#b6bdc4;
+  --sel-bg:#14171a; --sel-fg:#ffffff;
+  --error:#c2362f; --ok:#1f7a55;
+  --plexus:20,23,26;
+  --f-display:"Sora","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+  --r:10px;
+  --c1:#2a78d6; --c2:#eb6834; --c3:#1baf7a; --c4:#eda100; --c5:#e87ba4; --c6:#008300; --c7:#6250d6; --c8:#e34948; --c0:#9aa3ab;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d0f11; --panel:rgba(22,25,29,.74); --panel-solid:#16191d;
+  --ink:#eef1f3; --ink-2:#a1a9b1; --ink-3:#6f7880;
+  --line:#2a3036; --line-strong:#3d454d;
+  --sel-bg:#eef1f3; --sel-fg:#0d0f11;
+  --error:#ff7a70; --ok:#5fd3a0; --plexus:220,226,232; --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --c5:#d55181; --c6:#008300; --c7:#9085e9; --c8:#e66767; --c0:#5d666e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d0f11; --panel:rgba(22,25,29,.74); --panel-solid:#16191d;
+  --ink:#eef1f3; --ink-2:#a1a9b1; --ink-3:#6f7880;
+  --line:#2a3036; --line-strong:#3d454d;
+  --sel-bg:#eef1f3; --sel-fg:#0d0f11;
+  --error:#ff7a70; --ok:#5fd3a0; --plexus:220,226,232; --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --c5:#d55181; --c6:#008300; --c7:#9085e9; --c8:#e66767; --c0:#5d666e; color-scheme:dark}
+
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+#plexus{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:1;max-width:1140px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 56px;display:grid;grid-template-columns:300px minmax(0,1fr);gap:40px;align-items:start}
+
+/* rail */
+.rail{position:sticky;top:calc(24px + env(safe-area-inset-top,0px));display:flex;flex-direction:column;gap:28px}
+.logo{width:210px;height:auto;color:var(--ink);display:block}
+.event h1{font-family:var(--f-display);font-weight:300;font-size:1.55rem;line-height:1.2;margin:0;text-wrap:balance;letter-spacing:-.01em}
+.event h1 b{font-weight:700}
+.areas{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin-top:12px;line-height:1.7}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tag{font-family:var(--f-mono);font-size:.74rem;border:1px solid var(--line-strong);border-radius:999px;padding:4px 10px;background:var(--panel);color:var(--ink)}
+.tag.deadline{background:var(--sel-bg);color:var(--sel-fg);border-color:var(--sel-bg)}
+
+.chain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.chain li{position:relative;display:flex;gap:14px;align-items:center;padding:7px 0}
+.chain li:not(:last-child)::after{content:"";position:absolute;left:6px;top:calc(50% + 7px);height:calc(100% - 14px);width:1px;background:var(--line-strong)}
+.chain li.done:not(:last-child)::after{background:var(--ink)}
+.node{width:13px;height:13px;border-radius:50%;border:1.5px solid var(--line-strong);background:var(--bg);flex:none;transition:all .25s}
+.chain li.current .node{border-color:var(--ink);box-shadow:0 0 0 4px rgba(var(--plexus),.12);background:var(--panel-solid)}
+.chain li.done .node{background:var(--ink);border-color:var(--ink)}
+.chain li.skip{opacity:.4}
+.chain button{all:unset;cursor:default;font-size:.9rem;color:var(--ink-3)}
+.chain li.current button{color:var(--ink);font-weight:600}
+.chain li.done button{color:var(--ink-2);cursor:pointer}
+.chain li.done button:hover{color:var(--ink);text-decoration:underline}
+.chain button:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px}
+
+/* panel */
+.panel{background:var(--panel);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:16px;padding:36px 40px 28px;min-width:0;box-shadow:0 30px 60px -40px rgba(var(--plexus),.45)}
+.step-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:28px}
+.eyebrow{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.step-head h2{font-family:var(--f-display);font-weight:500;font-size:1.7rem;letter-spacing:-.015em;margin:6px 0 4px;text-wrap:balance}
+.step-head p{margin:0;color:var(--ink-2)}
+.bar{flex:1 1 160px;max-width:220px;align-self:center}
+.bar-track{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.bar-fill{height:100%;background:var(--ink);width:0;transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.bar-label{font-family:var(--f-mono);font-size:.7rem;color:var(--ink-3);margin-top:6px;text-align:right;font-variant-numeric:tabular-nums}
+
+.qs{display:flex;flex-direction:column;gap:30px}
+.q{display:flex;flex-direction:column;gap:10px;min-width:0;animation:rise .45s both}
+@keyframes rise{from{opacity:.001;transform:translateY(8px)}to{opacity:1;transform:none}}
+.q-label{display:flex;gap:10px;align-items:baseline;font-weight:600;font-size:1rem;text-wrap:balance}
+.qn{font-family:var(--f-mono);font-weight:500;font-size:.75rem;color:var(--ink-3);min-width:1.8em;font-variant-numeric:tabular-nums}
+.req{color:var(--ink-3);font-weight:400}
+.hint{font-size:.85rem;color:var(--ink-2);margin-top:-6px}
+.q.has-n .hint,.q.has-n .opts,.q.has-n .field,.q.has-n .err,.q.has-n .aviso,.q.has-n .counter{margin-left:calc(1.8em + 10px)}
+
+.field input,.field select{width:100%;font:inherit;color:var(--ink);background:var(--panel-solid);border:1px solid var(--line-strong);border-radius:var(--r);padding:12px 14px;transition:border-color .2s,box-shadow .2s}
+.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-2) 50%),linear-gradient(135deg,var(--ink-2) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 15px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:40px}
+.field input:focus,.field select:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(var(--plexus),.12)}
+.field input::placeholder{color:var(--ink-3)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 20px}
+.grid2 .q.wide{grid-column:1/-1}
+
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts.stack{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.opt{position:relative;display:flex;align-items:center;gap:10px;border:1px solid var(--line-strong);border-radius:var(--r);padding:10px 14px;background:var(--panel-solid);cursor:pointer;transition:background .18s,border-color .18s,color .18s,transform .18s;font-size:.92rem;line-height:1.35;user-select:none}
+.opt:hover{border-color:var(--ink)}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.mark{width:15px;height:15px;flex:none;border:1.5px solid var(--line-strong);border-radius:50%;display:grid;place-items:center;transition:all .18s}
+.opt.box .mark{border-radius:4px}
+.opt:has(input:checked){background:var(--sel-bg);color:var(--sel-fg);border-color:var(--sel-bg)}
+.opt:has(input:checked) .mark{border-color:var(--sel-fg);background:var(--sel-fg);box-shadow:inset 0 0 0 3px var(--sel-bg)}
+.opt.box:has(input:checked) .mark{box-shadow:none;background:transparent}
+.opt.box:has(input:checked) .mark::after{content:"";width:8px;height:4px;border-left:2px solid var(--sel-fg);border-bottom:2px solid var(--sel-fg);transform:rotate(-45deg) translate(1px,-1px)}
+.opt:has(input:focus-visible){outline:2px solid var(--ink);outline-offset:2px}
+.opt:has(input:disabled){opacity:.4;cursor:not-allowed}
+.opt:has(input:disabled):hover{border-color:var(--line-strong)}
+.opts.big .opt{padding:16px 18px;font-size:.95rem;flex:1 1 100%}
+.opts.big .opt.absent{border-style:dashed}
+
+.counter{font-family:var(--f-mono);font-size:.74rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.aviso{font-size:.85rem;color:var(--ink-2);border-left:2px solid var(--ink);padding:2px 0 2px 12px}
+.err{font-size:.84rem;color:var(--error);display:none}
+.q.invalid .err{display:block}
+.q.invalid .field input,.q.invalid .field select{border-color:var(--error)}
+.q.invalid .opt{border-color:color-mix(in srgb,var(--error) 55%,var(--line-strong))}
+
+.consent{display:flex;gap:14px;align-items:flex-start;padding:18px;border:1px solid var(--line-strong);border-radius:var(--r);background:var(--panel-solid);cursor:pointer}
+.consent .opt{all:unset}
+.consent:has(input:checked){border-color:var(--ink)}
+.consent input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--ink);flex:none}
+.consent span{font-size:.93rem}
+.consent small{display:block;color:var(--ink-2);margin-top:4px;font-size:.82rem}
+
+.nav{padding-right:0;display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:36px;padding-top:20px;border-top:1px solid var(--line);flex-wrap:wrap}
+.btn{font:inherit;font-weight:600;text-decoration:none;border-radius:999px;padding:12px 26px;cursor:pointer;border:1px solid var(--ink);transition:transform .15s,background .2s,color .2s;display:inline-flex;align-items:center;gap:10px}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.btn.primary{background:var(--sel-bg);color:var(--sel-fg)}
+.btn.primary:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line-strong)}
+.btn.ghost:hover{border-color:var(--ink)}
+.btn[disabled]{opacity:.5;cursor:wait}
+.btn .arrow{font-family:var(--f-mono)}
+.nav-note{font-family:var(--f-mono);font-size:.72rem;color:var(--ink-3)}
+
+.done-view{text-align:left;display:flex;flex-direction:column;gap:18px;padding-block:12px}
+.done-view .big{font-family:var(--f-display);font-size:2.2rem;font-weight:300;line-height:1.15;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.done-view .big b{font-weight:700}
+.ticket{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.ticket div{background:var(--panel-solid);padding:14px 16px}
+.ticket dt{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.ticket dd{margin:4px 0 0;font-weight:600;overflow-wrap:anywhere}
+.demo{font-size:.82rem;color:var(--ink-2);border:1px dashed var(--line-strong);border-radius:var(--r);padding:10px 14px}
+
+/* ---------- admin ---------- */
+.admin-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-decoration:none;border-top:1px solid var(--line);padding-top:16px;width:100%}
+.admin-link:hover{color:var(--ink)}
+.admin-link:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px}
+.admin-link svg{width:13px;height:13px}
+.admin{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 56px}
+.login{max-width:400px;margin:8vh auto 0;display:flex;flex-direction:column;gap:22px}
+.login .logo{width:170px}
+.login h2{font-family:var(--f-display);font-weight:500;font-size:1.5rem;margin:0}
+.login form{display:flex;flex-direction:column;gap:16px}
+.login label{font-weight:600;font-size:.9rem;display:flex;flex-direction:column;gap:6px}
+.login .err{display:block;min-height:1.2em}
+.linkbtn{all:unset;cursor:pointer;font-size:.88rem;color:var(--ink-2);text-decoration:underline}
+.linkbtn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+.dbar{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+.dbar .logo{width:120px}
+.dbar h2{font-family:var(--f-display);font-weight:500;font-size:1.35rem;margin:0}
+.dbar .src{font-family:var(--f-mono);font-size:.74rem;color:var(--ink-2)}
+.dbar .grow{flex:1}
+.dbar .acts{display:flex;gap:8px;flex-wrap:wrap}
+.btn.sm{padding:8px 16px;font-size:.85rem}
+.banner{border:1px dashed var(--line-strong);background:var(--panel);border-radius:var(--r);padding:10px 14px;font-size:.88rem;margin-bottom:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.banner b{font-family:var(--f-mono);letter-spacing:.08em}
+.filters{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-bottom:20px}
+.filters label{display:flex;flex-direction:column;gap:4px;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.filters select{font:inherit;font-family:var(--f-body);font-size:.9rem;text-transform:none;letter-spacing:0;color:var(--ink);background:var(--panel-solid);border:1px solid var(--line-strong);border-radius:8px;padding:8px 12px;min-width:190px;max-width:100%}
+
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:20px}
+.kpi{background:var(--panel);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:16px 18px;min-width:0}
+.kpi dt{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.kpi dd{margin:6px 0 0;font-family:var(--f-display);font-size:2rem;font-weight:500;line-height:1;font-variant-numeric:tabular-nums}
+.kpi small{display:block;margin-top:6px;font-size:.78rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
+
+.dgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{background:var(--panel);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:14px;padding:18px 20px;min-width:0}
+.card.span2{grid-column:span 2}
+.card.span3{grid-column:1/-1}
+.card h3{font-size:.95rem;font-weight:600;margin:0 0 2px;text-wrap:balance}
+.card .sub{font-size:.78rem;color:var(--ink-3);margin-bottom:14px}
+.bars{display:flex;flex-direction:column;gap:9px}
+.brow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;font-size:.84rem;border-radius:6px;padding:2px 0}
+.brow .bl{min-width:0;overflow-wrap:anywhere;color:var(--ink)}
+.brow .bv{font-family:var(--f-mono);font-size:.76rem;color:var(--ink-2);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.brow .bt{grid-column:1/-1;height:8px;background:color-mix(in srgb,var(--ink) 8%,transparent);border-radius:4px;overflow:hidden}
+.brow .bf{height:100%;background:var(--ink);border-radius:0 4px 4px 0;min-width:2px;transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.brow:hover .bf{background:color-mix(in srgb,var(--ink) 75%,var(--panel-solid))}
+.empty-bars{font-size:.85rem;color:var(--ink-3)}
+
+.mapwrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px;align-items:start}
+.map svg{width:100%;height:auto;max-width:100%;display:block}
+.map path{stroke:var(--panel-solid);stroke-width:1.2;transition:opacity .15s;cursor:default}
+.map path:hover{opacity:.75;stroke:var(--ink);stroke-width:1.5}
+.legend{display:flex;align-items:center;gap:6px;margin-top:10px;font-family:var(--f-mono);font-size:.7rem;color:var(--ink-2);flex-wrap:wrap}
+.legend i{display:inline-block;width:22px;height:10px;border-radius:2px;border:1px solid var(--line)}
+.rank{display:flex;flex-direction:column;gap:18px}
+.rank h4{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin:0 0 8px;font-weight:500}
+.rank ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.rank li{display:grid;grid-template-columns:1.6em minmax(0,1fr) auto;gap:8px;font-size:.86rem;align-items:baseline}
+.rank li span:first-child{font-family:var(--f-mono);font-size:.72rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.rank li span:last-child{font-family:var(--f-mono);font-size:.78rem;font-variant-numeric:tabular-nums}
+
+.tablewrap{overflow-x:auto;max-height:420px;overflow-y:auto;border:1px solid var(--line);border-radius:10px}
+table.leads{border-collapse:collapse;width:100%;font-size:.83rem;min-width:820px}
+table.leads th{position:sticky;top:0;background:var(--panel-solid);text-align:left;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);font-weight:500;padding:9px 12px;border-bottom:1px solid var(--line)}
+table.leads td{padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.leads tr:last-child td{border-bottom:0}
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.card-head .sub{margin-bottom:0}
+.dempty{text-align:left;padding:48px 28px;display:flex;flex-direction:column;gap:14px;max-width:640px}
+.dempty h3{font-family:var(--f-display);font-weight:500;font-size:1.4rem;margin:0}
+.dempty p{margin:0;color:var(--ink-2)}
+.dempty ol{margin:0;padding-left:1.2em;color:var(--ink-2);display:flex;flex-direction:column;gap:4px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--sel-bg);color:var(--sel-fg);padding:10px 18px;border-radius:999px;font-size:.88rem;z-index:20;max-width:calc(100% - 32px)}
+.tip{position:fixed;z-index:30;pointer-events:none;background:var(--sel-bg);color:var(--sel-fg);font-size:.8rem;padding:6px 10px;border-radius:6px;max-width:260px;font-variant-numeric:tabular-nums}
+
+.donut{display:grid;grid-template-columns:150px minmax(0,1fr);gap:18px;align-items:center}
+.donut svg{width:150px;height:150px;display:block;max-width:100%}
+.donut circle.seg{fill:none;stroke-width:15;transition:stroke-width .15s}
+.donut circle.seg:hover{stroke-width:19}
+.ctr{font-family:var(--f-display);font-size:20px;font-weight:500;fill:var(--ink)}
+.ctr2{font-family:var(--f-mono);font-size:7px;letter-spacing:.08em;fill:var(--ink-3)}
+.dleg{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px;min-width:0}
+.dleg li{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:8px;align-items:baseline;font-size:.82rem}
+.dleg i{width:10px;height:10px;border-radius:3px;transform:translateY(1px)}
+.dleg span:last-child{font-family:var(--f-mono);font-size:.74rem;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.dleg .lb{min-width:0;overflow-wrap:anywhere}
+.setor-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:14px}
+.setor-head select{font:inherit;font-size:.9rem;color:var(--ink);background:var(--panel-solid);border:1px solid var(--line-strong);border-radius:8px;padding:8px 12px;max-width:100%}
+.setores{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.mini{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--panel-solid);display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0;text-align:center}
+.mini b{font-size:.86rem}
+.mini small{font-family:var(--f-mono);font-size:.7rem;color:var(--ink-3)}
+.mini svg{width:120px;height:120px}
+.mini circle.seg{fill:none;stroke-width:16}
+.mini circle.seg:hover{stroke-width:20}
+.sleg{list-style:none;margin:0 0 14px;padding:0;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.8rem}
+.sleg li{display:flex;align-items:center;gap:6px}
+.sleg i{width:10px;height:10px;border-radius:3px}
+@media (max-width:640px){.donut{grid-template-columns:minmax(0,1fr);justify-items:center}.dleg{width:100%}}
+
+.music{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:15;display:inline-flex;align-items:center;gap:10px;font:inherit;font-size:.84rem;font-weight:600;color:var(--ink);background:var(--panel);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line-strong);border-radius:999px;padding:9px 16px 9px 12px;cursor:pointer;box-shadow:0 10px 30px -18px rgba(var(--plexus),.6)}
+.music:hover{border-color:var(--ink)}
+.music:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.eq{display:inline-flex;align-items:flex-end;gap:2px;height:14px;width:16px}
+.eq i{width:3px;height:4px;background:currentColor;border-radius:1px}
+.music.on{background:var(--sel-bg);color:var(--sel-fg);border-color:var(--sel-bg)}
+.music.on .eq i{animation:eq .9s ease-in-out infinite}
+.music.on .eq i:nth-child(2){animation-delay:-.3s}.music.on .eq i:nth-child(3){animation-delay:-.6s}.music.on .eq i:nth-child(4){animation-delay:-.15s}
+@keyframes eq{0%,100%{height:4px}50%{height:14px}}
+@media (max-width:640px){.music .mlabel{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.music{padding:11px}}
+
+.intro{position:relative;z-index:2;min-height:100vh;min-height:100dvh;display:flex;align-items:center;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:48px;transition:opacity .45s,transform .45s}
+.intro.leaving{opacity:0;transform:translateY(-14px)}
+.intro-in{max-width:1080px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:34px}
+.intro .logo{width:clamp(170px,22vw,260px)}
+.intro .eyebrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.intro h1{font-family:var(--f-display);font-weight:300;font-size:clamp(2.2rem,5.6vw,4.6rem);line-height:1.04;letter-spacing:-.035em;margin:0;max-width:17ch;text-wrap:balance}
+.intro h1 b{font-weight:700;display:block}
+.intro h1 em{font-style:normal;position:relative;white-space:nowrap}
+.intro h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.08em;background:var(--ink);transform-origin:left;animation:line 1.1s .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes line{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.intro p{margin:0;max-width:52ch;font-size:1.08rem;color:var(--ink-2)}
+.intro .go{font-size:1.05rem;padding:18px 30px;align-self:flex-start;gap:14px;box-shadow:0 18px 40px -22px rgba(var(--plexus),.8)}
+.intro .go .arrow{transition:transform .2s}
+.intro .go:hover .arrow{transform:translateX(4px)}
+.intro .hint2{font-family:var(--f-mono);font-size:.72rem;color:var(--ink-3);display:flex;align-items:center;gap:8px}
+.intro > .intro-in > *{animation:rise .7s both}
+.intro > .intro-in > *:nth-child(2){animation-delay:.12s}.intro > .intro-in > *:nth-child(3){animation-delay:.24s}.intro > .intro-in > *:nth-child(4){animation-delay:.36s}.intro > .intro-in > *:nth-child(5){animation-delay:.48s}
+@media (max-width:1000px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.dgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.card.span2{grid-column:1/-1}}
+@media (max-width:640px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.dgrid{grid-template-columns:minmax(0,1fr)}.mapwrap{grid-template-columns:minmax(0,1fr)}.kpi dd{font-size:1.6rem}.dbar .grow{display:none}}
+
+@media (max-width:880px){
+  .wrap{grid-template-columns:minmax(0,1fr);gap:22px;padding-block:24px 40px}
+  .rail{position:static;gap:16px}
+  .logo{width:150px}
+  .event h1{font-size:1.25rem}
+  .chain{flex-direction:row;justify-content:space-between}
+  .chain li{flex:1;padding:0}
+  .chain li:not(:last-child)::after{left:13px;right:0;top:50%;height:1px;width:auto}
+  .chain button{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .panel{padding:24px 20px 20px;border-radius:14px}
+  .step-head h2{font-size:1.4rem}
+  .bar{max-width:none;flex-basis:100%}
+  .bar-label{text-align:left}
+  .grid2{grid-template-columns:minmax(0,1fr)}
+  .q.has-n .hint,.q.has-n .opts,.q.has-n .field,.q.has-n .err,.q.has-n .aviso,.q.has-n .counter{margin-left:0}
+  .opts.stack{grid-template-columns:minmax(0,1fr)}
+  .btn{padding:12px 20px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<script src="config.js"></script>
+</head>
+<body>
+
+<canvas id="plexus" aria-hidden="true"></canvas>
+<section class="intro" id="intro" aria-labelledby="intro-t">
+  <div class="intro-in">
+    <svg role="img" aria-label="IPM26" class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8834 2155" fill="none">
+<ellipse cx="3773.29" cy="444.417" rx="63.5355" ry="63.5283" fill="currentColor"/>
+<ellipse cx="63.5355" cy="63.5283" rx="63.5355" ry="63.5283" fill="currentColor"/>
+<ellipse cx="3337.1" cy="2070.63" rx="59.0682" ry="59.0615" fill="currentColor"/>
+<ellipse cx="428.443" cy="1919.25" rx="59.0682" ry="59.0615" fill="currentColor"/>
+<ellipse cx="1928.92" cy="1147.73" rx="93.6616" ry="93.6406" fill="currentColor"/>
+<path d="M2037.11 1094.38L3693.99 476.963" stroke="currentColor" stroke-width="30"/>
+<path d="M423.901 1833.88L84.3828 148.894C114.298 142.53 125.532 131.876 139.976 105.715L1821.68 1093.38C1805.46 1136.43 1804.66 1160.72 1821.68 1204.56L510.269 1886.99C488.643 1845.9 472.302 1838.55 423.901 1833.88Z" fill="currentColor"/>
+<path d="M2034.63 1197.61L3269.6 2021.5" stroke="currentColor" stroke-width="30"/>
+<path d="M3738.67 525.105L3349.51 1987.75" stroke="currentColor" stroke-width="30"/>
+<path d="M8493.33 1784C8401.33 1784 8324.33 1763 8262.33 1721C8201.33 1678 8155.33 1617 8124.33 1538C8093.33 1458 8077.83 1364 8077.83 1256C8077.83 1137 8096.83 1038.5 8134.83 960.5C8173.83 881.5 8227.33 822 8295.33 782C8363.33 742 8442.83 722 8533.83 722C8576.83 722 8617.83 726 8656.83 734C8696.83 741 8732.33 754.5 8763.33 774.5L8740.83 815C8714.83 798 8683.83 786 8647.83 779C8612.83 772 8574.83 768.5 8533.83 768.5C8410.83 768.5 8312.33 808.5 8238.33 888.5C8165.33 968.5 8128.83 1088.5 8128.83 1248.5C8128.83 1272.5 8130.33 1303.5 8133.33 1341.5C8136.33 1379.5 8143.83 1416.5 8155.83 1452.5L8136.33 1463C8140.33 1400 8158.33 1346 8190.33 1301C8222.33 1256 8263.83 1222 8314.83 1199C8366.83 1176 8423.83 1164.5 8485.83 1164.5C8555.83 1164.5 8616.83 1177 8668.83 1202C8720.83 1227 8761.33 1263 8790.33 1310C8819.33 1356 8833.83 1410 8833.83 1472C8833.83 1535 8818.83 1590 8788.83 1637C8759.83 1683 8719.83 1719 8668.83 1745C8617.83 1771 8559.33 1784 8493.33 1784ZM8491.83 1739C8549.83 1739 8600.33 1728 8643.33 1706C8687.33 1684 8721.83 1653 8746.83 1613C8771.83 1573 8784.33 1526.5 8784.33 1473.5C8784.33 1393.5 8757.33 1329.5 8703.33 1281.5C8649.33 1232.5 8575.33 1208 8481.33 1208C8420.33 1208 8366.33 1220 8319.33 1244C8273.33 1268 8237.33 1300.5 8211.33 1341.5C8186.33 1381.5 8173.83 1426.5 8173.83 1476.5C8173.83 1518.5 8185.83 1560 8209.83 1601C8233.83 1641 8269.33 1674 8316.33 1700C8363.33 1726 8421.83 1739 8491.83 1739Z" fill="currentColor"/>
+<path d="M7224.76 1778V1742L7674.76 1289C7718.76 1246 7751.76 1208 7773.76 1175C7795.76 1142 7810.76 1111.5 7818.76 1083.5C7826.76 1054.5 7830.76 1026 7830.76 998C7830.76 928 7806.76 872.5 7758.76 831.5C7710.76 789.5 7641.26 768.5 7550.26 768.5C7480.26 768.5 7419.26 779 7367.26 800C7316.26 820 7272.26 851.5 7235.26 894.5L7200.76 861.5C7239.76 816.5 7288.76 782 7347.76 758C7406.76 734 7474.76 722 7551.76 722C7618.76 722 7676.76 733 7725.76 755C7775.76 777 7813.76 808.5 7839.76 849.5C7866.76 889.5 7880.26 938 7880.26 995C7880.26 1028 7875.76 1060.5 7866.76 1092.5C7857.76 1124.5 7840.76 1159 7815.76 1196C7791.76 1232 7756.76 1273 7710.76 1319L7280.26 1752.5L7259.26 1731.5H7935.76V1778H7224.76Z" fill="currentColor"/>
+<path d="M5835.61 1778V728H6080.11L6515.11 1442H6386.11L6809.11 728H7053.61L7056.61 1778H6783.61L6780.61 1143.5H6827.11L6462.5 1674.5H6430.5L6053.11 1143.5H6110.11V1778H5835.61Z" fill="currentColor"/>
+<path d="M4744.3 1778V728H5224.3C5320.3 728 5402.8 743.5 5471.8 774.5C5541.8 805.5 5595.8 850.5 5633.8 909.5C5671.8 967.5 5690.8 1036.5 5690.8 1116.5C5690.8 1195.5 5671.8 1264 5633.8 1322C5595.8 1380 5541.8 1420 5471.8 1452C5402.8 1483 5320.3 1498.5 5224.3 1498.5H4909.3L5041.3 1369.5V1778H4744.3ZM5041.3 1401L4909.3 1264.5H5206.3C5268.3 1264.5 5314.3 1251 5344.3 1224C5375.3 1197 5390.8 1164.5 5390.8 1116.5C5390.8 1067.5 5375.3 1029.5 5344.3 1002.5C5314.3 975.5 5268.3 962 5206.3 962H4909.3L5041.3 825.5V1401Z" fill="currentColor"/>
+<path d="M4236 1778V728H4533V1778H4236Z" fill="currentColor"/>
+</svg>
+    <div class="eyebrow"><span class="tag">13 e 14 · nov · 2026</span><span class="tag deadline">Confirme até 05/11</span></div>
+    <h1 id="intro-t">Bem-vindos à maior <b>Imersão de Projetos Multidisciplinares</b> do <em>Brasil</em></h1>
+    <p>Confirme sua presença e conte um pouco sobre você. Leva cerca de 5 minutos.</p>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <button type="button" class="btn primary go" id="go">Vamos juntos descobrir o propósito <span class="arrow">→</span></button>
+      <span class="hint2"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Ao iniciar, a trilha sonora começa a tocar</span>
+    </div>
+  </div>
+</section>
+<div id="formView" hidden>
+<div class="wrap">
+  <aside class="rail">
+    <div>
+      <svg role="img" aria-label="IPM26" class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8834 2155" fill="none">
+<ellipse cx="3773.29" cy="444.417" rx="63.5355" ry="63.5283" fill="currentColor"/>
+<ellipse cx="63.5355" cy="63.5283" rx="63.5355" ry="63.5283" fill="currentColor"/>
+<ellipse cx="3337.1" cy="2070.63" rx="59.0682" ry="59.0615" fill="currentColor"/>
+<ellipse cx="428.443" cy="1919.25" rx="59.0682" ry="59.0615" fill="currentColor"/>
+<ellipse cx="1928.92" cy="1147.73" rx="93.6616" ry="93.6406" fill="currentColor"/>
+<path d="M2037.11 1094.38L3693.99 476.963" stroke="currentColor" stroke-width="30"/>
+<path d="M423.901 1833.88L84.3828 148.894C114.298 142.53 125.532 131.876 139.976 105.715L1821.68 1093.38C1805.46 1136.43 1804.66 1160.72 1821.68 1204.56L510.269 1886.99C488.643 1845.9 472.302 1838.55 423.901 1833.88Z" fill="currentColor"/>
+<path d="M2034.63 1197.61L3269.6 2021.5" stroke="currentColor" stroke-width="30"/>
+<path d="M3738.67 525.105L3349.51 1987.75" stroke="currentColor" stroke-width="30"/>
+<path d="M8493.33 1784C8401.33 1784 8324.33 1763 8262.33 1721C8201.33 1678 8155.33 1617 8124.33 1538C8093.33 1458 8077.83 1364 8077.83 1256C8077.83 1137 8096.83 1038.5 8134.83 960.5C8173.83 881.5 8227.33 822 8295.33 782C8363.33 742 8442.83 722 8533.83 722C8576.83 722 8617.83 726 8656.83 734C8696.83 741 8732.33 754.5 8763.33 774.5L8740.83 815C8714.83 798 8683.83 786 8647.83 779C8612.83 772 8574.83 768.5 8533.83 768.5C8410.83 768.5 8312.33 808.5 8238.33 888.5C8165.33 968.5 8128.83 1088.5 8128.83 1248.5C8128.83 1272.5 8130.33 1303.5 8133.33 1341.5C8136.33 1379.5 8143.83 1416.5 8155.83 1452.5L8136.33 1463C8140.33 1400 8158.33 1346 8190.33 1301C8222.33 1256 8263.83 1222 8314.83 1199C8366.83 1176 8423.83 1164.5 8485.83 1164.5C8555.83 1164.5 8616.83 1177 8668.83 1202C8720.83 1227 8761.33 1263 8790.33 1310C8819.33 1356 8833.83 1410 8833.83 1472C8833.83 1535 8818.83 1590 8788.83 1637C8759.83 1683 8719.83 1719 8668.83 1745C8617.83 1771 8559.33 1784 8493.33 1784ZM8491.83 1739C8549.83 1739 8600.33 1728 8643.33 1706C8687.33 1684 8721.83 1653 8746.83 1613C8771.83 1573 8784.33 1526.5 8784.33 1473.5C8784.33 1393.5 8757.33 1329.5 8703.33 1281.5C8649.33 1232.5 8575.33 1208 8481.33 1208C8420.33 1208 8366.33 1220 8319.33 1244C8273.33 1268 8237.33 1300.5 8211.33 1341.5C8186.33 1381.5 8173.83 1426.5 8173.83 1476.5C8173.83 1518.5 8185.83 1560 8209.83 1601C8233.83 1641 8269.33 1674 8316.33 1700C8363.33 1726 8421.83 1739 8491.83 1739Z" fill="currentColor"/>
+<path d="M7224.76 1778V1742L7674.76 1289C7718.76 1246 7751.76 1208 7773.76 1175C7795.76 1142 7810.76 1111.5 7818.76 1083.5C7826.76 1054.5 7830.76 1026 7830.76 998C7830.76 928 7806.76 872.5 7758.76 831.5C7710.76 789.5 7641.26 768.5 7550.26 768.5C7480.26 768.5 7419.26 779 7367.26 800C7316.26 820 7272.26 851.5 7235.26 894.5L7200.76 861.5C7239.76 816.5 7288.76 782 7347.76 758C7406.76 734 7474.76 722 7551.76 722C7618.76 722 7676.76 733 7725.76 755C7775.76 777 7813.76 808.5 7839.76 849.5C7866.76 889.5 7880.26 938 7880.26 995C7880.26 1028 7875.76 1060.5 7866.76 1092.5C7857.76 1124.5 7840.76 1159 7815.76 1196C7791.76 1232 7756.76 1273 7710.76 1319L7280.26 1752.5L7259.26 1731.5H7935.76V1778H7224.76Z" fill="currentColor"/>
+<path d="M5835.61 1778V728H6080.11L6515.11 1442H6386.11L6809.11 728H7053.61L7056.61 1778H6783.61L6780.61 1143.5H6827.11L6462.5 1674.5H6430.5L6053.11 1143.5H6110.11V1778H5835.61Z" fill="currentColor"/>
+<path d="M4744.3 1778V728H5224.3C5320.3 728 5402.8 743.5 5471.8 774.5C5541.8 805.5 5595.8 850.5 5633.8 909.5C5671.8 967.5 5690.8 1036.5 5690.8 1116.5C5690.8 1195.5 5671.8 1264 5633.8 1322C5595.8 1380 5541.8 1420 5471.8 1452C5402.8 1483 5320.3 1498.5 5224.3 1498.5H4909.3L5041.3 1369.5V1778H4744.3ZM5041.3 1401L4909.3 1264.5H5206.3C5268.3 1264.5 5314.3 1251 5344.3 1224C5375.3 1197 5390.8 1164.5 5390.8 1116.5C5390.8 1067.5 5375.3 1029.5 5344.3 1002.5C5314.3 975.5 5268.3 962 5206.3 962H4909.3L5041.3 825.5V1401Z" fill="currentColor"/>
+<path d="M4236 1778V728H4533V1778H4236Z" fill="currentColor"/>
+</svg>
+    </div>
+    <div class="event">
+      <h1>Imersão de Projetos <b>Multidisciplinares</b></h1>
+      <div class="meta">
+        <span class="tag">13 e 14 · nov · 2026</span>
+        <span class="tag deadline">Confirme até 05/11</span>
+      </div>
+    </div>
+    <ol class="chain" id="chain" aria-label="Etapas do formulário"></ol>
+    <a class="admin-link" href="#admin"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>Área administrativa</a>
+  </aside>
+
+  <main class="panel" id="panel" aria-live="polite"></main>
+</div>
+</div>
+<div id="adminView" class="admin" hidden><div id="dash"></div></div>
+<button type="button" class="music" id="music" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="mlabel">Tocar música</span></button>
+
+<script>
+// Fora do claude.ai (GitHub Pages), a URL do Google Apps Script vem do arquivo config.js.
+const API_URL = (window.IPM_CONFIG && window.IPM_CONFIG.API_URL || "").trim();
+async function api(body){
+  const r = await fetch(API_URL, { method:"POST", body: JSON.stringify(body) });
+  if(!r.ok) throw new Error("http " + r.status);
+  return r.json();
+}
+
+const STEPS = [{"title": "Cadastro e confirmação", "sub": "Seus dados e a confirmação oficial de presença.", "qs": [{"id": "q1", "label": "Nome completo", "req": true, "type": "text", "input": "text"}, {"id": "q2", "label": "E-mail", "req": true, "type": "text", "input": "email", "hint": "Em qual deseja receber as comunicações oficiais do evento"}, {"id": "q3", "label": "WhatsApp", "req": true, "type": "text", "input": "tel"}, {"id": "q4", "label": "Empresa", "req": true, "type": "text", "input": "text"}, {"id": "q5", "label": "Estado", "req": true, "type": "select", "opts": ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"]}, {"id": "q6", "label": "Cidade", "req": true, "type": "text", "input": "text"}, {"id": "q7", "label": "Confirmação Oficial", "req": true, "type": "radio", "opts": ["Confirmo minha presença somente no dia 13/11/2026", "Confirmo minha presença somente no dia 14/11/2026", "Confirmo minha presença nos 2 dias (13/11/2026 e 14/11/2026)", "Confirmo minha ausência, pois infelizmente não poderei comparecer ao IPM26."], "aviso": "Ao confirmar presença, estou ciente que minha vaga é intransferível."}]}, {"title": "Perfil profissional", "sub": "Quem é você no mercado de infraestrutura.", "qs": [{"id": "q8", "label": "Cargo", "req": true, "n": 1, "type": "radio", "opts": ["Estudante", "Técnico(a)", "Projetista", "Engenheiro(a)", "Coordenador(a) / Gerente", "Diretor(a) / Sócio(a)", "Professor(a)", "Outro"]}, {"id": "q9", "label": "Segmento principal", "req": true, "n": 2, "type": "radio", "opts": ["Topografia", "Infraestrutura Urbana", "Rodoviária", "Saneamento", "BIM", "Outro"]}, {"id": "q10", "label": "Nível de escolaridade", "req": true, "n": 3, "type": "radio", "opts": ["Técnico", "Superior", "Pós-graduação", "Mestrado"]}, {"id": "q11", "label": "Tempo de experiência na área", "req": true, "n": 4, "type": "radio", "opts": ["Até 2 anos", "3 a 5 anos", "6 a 10 anos", "11 a 20 anos", "Mais de 20 anos"]}, {"id": "q12", "label": "Tipo de organização", "req": true, "n": 5, "type": "radio", "opts": ["Autônomo(a)", "Escritório de projetos", "Construtora", "Órgão público", "Concessionária", "Empresa de saneamento", "Instituição de ensino", "Fabricante / Revenda", "Outro"]}, {"id": "q13", "label": "Porte da empresa (nº de colaboradores)", "req": true, "n": 6, "type": "radio", "opts": ["1 a 10", "11 a 50", "51 a 200", "201 a 1.000", "Mais de 1.000"]}, {"id": "q14", "label": "Faturamento anual da empresa", "req": false, "n": 7, "type": "radio", "opts": ["Até R$ 200 mil", "R$ 200 mil a R$ 1 milhão", "R$ 1 milhão a R$ 5 milhões", "Acima de R$ 5 milhões", "Não se aplica (órgão público / instituição de ensino)"]}]}, {"title": "Softwares e notebook", "sub": "As ferramentas do seu dia a dia.", "qs": [{"id": "q15", "label": "Quais softwares Autodesk você usa?", "req": true, "n": 8, "type": "check", "opts": ["AutoCAD", "Civil 3D", "Revit", "InfraWorks", "Navisworks", "ReCap (nuvem de pontos)", "Dynamo", "Autodesk Docs / Construction Cloud (ACC)", "Forma", "Nenhum"]}, {"id": "q16", "label": "Tipo de licença", "req": true, "n": 9, "type": "radio", "opts": ["Assinatura da empresa", "Assinatura própria", "Educacional", "Não sei"]}, {"id": "q17", "label": "Seu notebook atende bem os softwares que você usa?", "req": true, "n": 10, "type": "radio", "opts": ["Sim, atende bem", "Atende parcialmente (fica lento em projetos maiores)", "Não atende"]}]}, {"title": "BIM", "sub": "Seu contato com a metodologia BIM.", "qs": [{"id": "q18", "label": "Você já conhece o BIM?", "req": true, "n": 11, "type": "radio", "opts": ["Não conheço", "Conheço apenas o conceito", "Já fiz curso ou treinamento", "Aplico BIM no dia a dia"]}, {"id": "q19", "label": "Quais usos do BIM você aplica hoje?", "req": true, "n": 12, "type": "check", "opts": ["Modelagem 3D", "Levantamento de condições existentes (nuvem de pontos)", "Compatibilização e detecção de interferências", "Extração de quantitativos", "Planejamento e sequenciamento de obra (4D)", "Orçamento e custos (5D)", "Documentação e geração de pranchas", "Análises e simulações (hidráulica, drenagem, terraplenagem)", "Colaboração em ambiente comum de dados (ACC)", "Ainda não aplico"]}]}, {"title": "Inteligência Artificial", "sub": "Como a IA já faz parte do seu trabalho.", "qs": [{"id": "q20", "label": "Com que frequência você usa IA no trabalho?", "req": true, "n": 13, "type": "radio", "opts": ["Nunca", "Raramente", "Semanalmente", "Diariamente", "Várias vezes ao dia"]}, {"id": "q21", "label": "Para que você usa IA?", "req": false, "n": 14, "type": "check", "opts": ["Textos e relatórios", "Memoriais descritivos", "Cálculos e planilhas", "Programação e automação (Dynamo, Python, LISP)", "Análise de dados", "Imagens e renderização", "Pesquisa técnica", "Ainda não uso"]}]}, {"title": "Interesses e investimento", "sub": "O que você quer ver no IPM26 e seus próximos passos.", "qs": [{"id": "q22", "label": "Temas de maior interesse no evento", "req": true, "n": 15, "type": "check", "opts": ["Ferramentas do Civil 3D para usuários avançados", "Nivelamento nas principais ferramentas do Civil 3D", "Civil 3D + CADInfra aplicados à topografia", "Civil 3D + CADInfra — Property Sets", "Plugin do CADInfra no Navisworks", "Modelagem hidráulica (InfoWorks / HEC-RAS)", "Nivelamento das ferramentas de drenagem do Civil 3D", "CADInfra aplicado à drenagem superficial", "Saneamento", "Visão da Autodesk sobre a evolução da infraestrutura", "Integração do CADInfra com o Dynamo", "Uso de assemblies especiais em corredores", "CADInfra aplicado ao fatiamento de sólidos", "Civil 3D e integrações com inteligência artificial", "CADInfra aplicado à sinalização"], "max": 3}, {"id": "q23", "label": "Você participa das decisões de compra de software ou equipamentos?", "req": true, "n": 16, "type": "radio", "opts": ["Decido", "Influencio", "Não participo"]}, {"id": "q24", "label": "Pretende investir em quais áreas nos próximos 12 meses?", "req": true, "n": 17, "type": "check", "opts": ["Softwares Autodesk", "Notebook / hardware", "Equipamentos de topografia", "Treinamento e certificação", "Serviços em nuvem", "Não pretendo investir"], "cond": true, "showIf": {"q": "q23", "not": "Não participo"}}]}, {"title": "Consentimento", "sub": "Último passo antes de enviar.", "qs": [{"id": "q25", "label": "Concordo com o uso dos meus dados pela organização do IPM 2026", "req": true, "type": "consent"}, {"id": "q26", "label": "Autorizo o compartilhamento dos meus dados de contato com os patrocinadores do evento", "req": false, "type": "consent"}]}];
+
+let answers = {};
+let cur = 0;
+let finished = null;
+
+const $ = (s, el=document) => el.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const confirmQ = STEPS[0].qs.find(q => q.label === "Confirmação Oficial");
+const isAbsent = () => (answers[confirmQ.id] || "").startsWith("Confirmo minha ausência");
+const stepActive = i => !(isAbsent() && i > 0 && i < STEPS.length - 1);
+const visible = q => !q.showIf || (answers[q.showIf.q] && answers[q.showIf.q] !== q.showIf.not);
+
+function renderChain(){
+  $("#chain").innerHTML = STEPS.map((s,i)=>{
+    const cls = finished ? "done" : !stepActive(i) ? "skip" : i < cur ? "done" : i === cur ? "current" : "";
+    return `<li class="${cls}"><span class="node"></span><button type="button" data-go="${i}" ${cls==="done"&&!finished?"":"tabindex=-1"}>${esc(s.title)}</button></li>`;
+  }).join("");
+}
+
+function qHTML(q){
+  const val = answers[q.id];
+  const nTag = q.n ? `<span class="qn">${String(q.n).padStart(2,"0")}</span>` : "";
+  const req = q.req ? "" : ` <span class="req">(opcional)</span>`;
+  let body = "";
+  if(q.type === "text"){
+    const ph = {email:"nome@empresa.com.br", tel:"(11) 90000-0000"}[q.input] || "";
+    body = `<div class="field"><input id="${q.id}" name="${q.id}" type="${q.input}" value="${esc(val||"")}" placeholder="${ph}" autocomplete="${q.input==='email'?'email':q.input==='tel'?'tel':q.label==='Nome completo'?'name':q.label==='Empresa'?'organization':q.label==='Cidade'?'address-level2':'off'}"></div>`;
+  } else if(q.type === "select"){
+    body = `<div class="field"><select id="${q.id}" name="${q.id}"><option value="">Selecione a UF</option>${q.opts.map(o=>`<option ${val===o?"selected":""}>${o}</option>`).join("")}</select></div>`;
+  } else if(q.type === "radio" || q.type === "check"){
+    const box = q.type === "check";
+    const long = q.opts.some(o => o.length > 28) || q.opts.length > 8;
+    const big = q === confirmQ;
+    const arr = box ? (val||[]) : [val];
+    body = `<div class="opts ${big?"big":long?"stack":""}" role="${box?"group":"radiogroup"}" aria-labelledby="${q.id}-l">` + q.opts.map((o,j)=>{
+      const on = arr.includes(o);
+      const dis = box && q.max && !on && (val||[]).length >= q.max;
+      return `<label class="opt ${box?"box":""} ${big && o.includes("ausência")?"absent":""}"><input type="${box?"checkbox":"radio"}" name="${q.id}" id="${q.id}-${j}" value="${esc(o)}" ${on?"checked":""} ${dis?"disabled":""}><span class="mark"></span><span>${esc(o)}</span></label>`;
+    }).join("") + `</div>`;
+    if(q.max) body += `<div class="counter" id="${q.id}-c">${(val||[]).length}/${q.max} selecionados</div>`;
+  } else if(q.type === "consent"){
+    const text = q.label;
+    const small = q.req ? "Obrigatório para enviar o formulário." : "Opcional. Somente quem autorizar terá nome, e-mail e WhatsApp repassados aos patrocinadores.";
+    return `<div class="q" data-q="${q.id}"><label class="consent"><input type="checkbox" id="${q.id}" name="${q.id}" ${val?"checked":""}><span>${esc(text)}<small>${small}</small></span></label><div class="err">Marque esta opção para enviar.</div></div>`;
+  }
+  const errMsg = q.type==="text"||q.type==="select" ? (q.input==="email"?"Informe um e-mail válido.":"Preencha este campo.") : q.type==="check" ? "Escolha pelo menos uma opção." : "Escolha uma opção.";
+  const wide = !(q.type==="text"||q.type==="select") || q.input==="email" || q.label==="Nome completo" ? "wide" : "";
+  return `<div class="q ${q.n?"has-n":""} ${wide}" data-q="${q.id}" ${visible(q)?"":"hidden"}>
+    <div class="q-label" id="${q.id}-l">${nTag}<span>${esc(q.label)}${req}</span></div>
+    ${q.hint?`<div class="hint">${esc(q.hint)}</div>`:""}
+    ${body}
+    ${q.aviso?`<div class="aviso">${esc(q.aviso)}</div>`:""}
+    <div class="err">${errMsg}</div>
+  </div>`;
+}
+
+function activeIndexes(){ return STEPS.map((_,i)=>i).filter(stepActive); }
+
+function render(){
+  renderChain();
+  const panel = $("#panel");
+  if(finished){ panel.innerHTML = doneHTML(); bindDone(); return; }
+  const s = STEPS[cur];
+  const act = activeIndexes(); const pos = act.indexOf(cur) + 1;
+  const isLast = cur === STEPS.length - 1;
+  const counted = s.qs.filter(q=>q.n).map(q=>q.n);
+  const range = counted.length ? `Perguntas ${String(counted[0]).padStart(2,"0")}–${String(counted[counted.length-1]).padStart(2,"0")}` : (cur===0?"Cadastro":"Consentimento");
+  panel.innerHTML = `
+    <div class="step-head">
+      <div>
+        <div class="eyebrow">Etapa ${pos} de ${act.length} · ${range}</div>
+        <h2>${esc(s.title)}</h2>
+        <p>${esc(s.sub)}</p>
+      </div>
+      <div class="bar"><div class="bar-track"><div class="bar-fill" id="fill"></div></div><div class="bar-label">${Math.round(((pos-1)/act.length)*100)}% concluído</div></div>
+    </div>
+    <form id="f" novalidate>
+      <div class="qs ${cur===0?"grid2":""}">${s.qs.map(qHTML).join("")}</div>
+      <div class="nav">
+        ${pos>1?`<button type="button" class="btn ghost" id="back"><span class="arrow">←</span> Voltar</button>`:`<span class="nav-note">Leva cerca de 5 minutos</span>`}
+        <button type="submit" class="btn primary" id="next">${isLast?"Enviar confirmação":"Continuar"} <span class="arrow">→</span></button>
+      </div>
+    </form>`;
+  requestAnimationFrame(()=>{ const f=$("#fill"); if(f) f.style.width = ((pos-1)/act.length*100)+"%"; });
+  bindStep();
+}
+
+function readInput(el){
+  const q = STEPS[cur].qs.find(x => x.id === el.name);
+  if(!q) return;
+  if(q.type === "check"){
+    answers[q.id] = [...document.querySelectorAll(`input[name="${q.id}"]:checked`)].map(i=>i.value);
+    if(q.max){
+      const n = answers[q.id].length;
+      document.querySelectorAll(`input[name="${q.id}"]`).forEach(i=>{ i.disabled = !i.checked && n >= q.max; });
+      $(`#${q.id}-c`).textContent = `${n}/${q.max} selecionados`;
+    }
+  } else if(q.type === "consent"){ answers[q.id] = el.checked; }
+  else { answers[q.id] = el.value.trim(); }
+  const box = $(`[data-q="${q.id}"]`); if(box && valid(q)) box.classList.remove("invalid");
+  // conditional questions + skipped steps
+  STEPS[cur].qs.forEach(x=>{ if(x.showIf){ const b=$(`[data-q="${x.id}"]`); if(b) b.hidden = !visible(x); }});
+  if(q === confirmQ){ renderChain(); updateNextLabel(); }
+}
+
+function updateNextLabel(){
+  const act = activeIndexes(); const pos = act.indexOf(cur)+1;
+  $(".eyebrow").textContent = $(".eyebrow").textContent.replace(/Etapa \d+ de \d+/, `Etapa ${pos} de ${act.length}`);
+}
+
+function valid(q){
+  if(!visible(q) || !q.req) return true;
+  const v = answers[q.id];
+  if(q.type === "consent") return !!v;
+  if(q.type === "check") return Array.isArray(v) && v.length > 0;
+  if(q.input === "email") return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v||"");
+  if(q.input === "tel") return (v||"").replace(/\D/g,"").length >= 10;
+  return !!v;
+}
+
+function bindStep(){
+  const f = $("#f");
+  f.addEventListener("input", e => readInput(e.target));
+  f.addEventListener("change", e => readInput(e.target));
+  const tel = f.querySelector('input[type="tel"]');
+  if(tel) tel.addEventListener("input", ()=>{
+    const d = tel.value.replace(/\D/g,"").slice(0,11);
+    tel.value = d.length>10 ? `(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}` : d.length>6 ? `(${d.slice(0,2)}) ${d.slice(2,6)}-${d.slice(6)}` : d.length>2 ? `(${d.slice(0,2)}) ${d.slice(2)}` : d;
+    answers[tel.name] = tel.value;
+  });
+  f.addEventListener("submit", e => { e.preventDefault(); next(); });
+  const back = $("#back");
+  if(back) back.addEventListener("click", () => { const act=activeIndexes(); cur = act[act.indexOf(cur)-1]; render(); scrollTop(); });
+}
+
+function scrollTop(){ const top = $("#panel").getBoundingClientRect().top + scrollY - 20; if(scrollY > top) scrollTo({top, behavior: matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"}); }
+
+async function next(){
+  const bad = STEPS[cur].qs.filter(q => !valid(q));
+  document.querySelectorAll(".q").forEach(b=>b.classList.remove("invalid"));
+  if(bad.length){
+    bad.forEach(q => $(`[data-q="${q.id}"]`).classList.add("invalid"));
+    const first = $(`[data-q="${bad[0].id}"]`);
+    first.scrollIntoView({block:"center", behavior: matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});
+    const inp = first.querySelector("input,select"); if(inp) inp.focus({preventScroll:true});
+    return;
+  }
+  const act = activeIndexes();
+  if(cur === STEPS.length - 1){ await submit(); return; }
+  cur = act[act.indexOf(cur)+1]; render(); scrollTop();
+}
+
+function payload(){
+  const out = { enviado_em: new Date().toISOString() };
+  STEPS.forEach((s,i)=>{ if(!stepActive(i)) return; s.qs.forEach(q=>{ if(!visible(q)) return; const v = answers[q.id]; out[q.label] = Array.isArray(v) ? v.join("; ") : (v === true ? "Sim" : v === false || v === undefined ? (q.type==="consent"?"Não":"") : v); }); });
+  return out;
+}
+
+async function submit(){
+  const btn = $("#next"); btn.disabled = true; btn.firstChild.textContent = "Enviando… ";
+  const data = payload();
+  let sent = false, error = null;
+  if(API_URL){
+    try{ const r = await api({ action:"submit", row: rowFromAnswers(), labels: Object.fromEntries(QFLAT.map(q => [q.key, q.label])) }); sent = !!r.ok; if(!sent) error = "O servidor recusou o envio."; }
+    catch(e){ error = "Sem conexão com o servidor de respostas."; }
+    if(!sent){ btn.disabled=false; btn.firstChild.textContent="Tentar enviar de novo "; showSubmitError(error); return; }
+  } else sent = await saveToDb();
+  finished = { data, sent };
+  render(); scrollTop();
+}
+
+function showSubmitError(msg){
+  let n = $("#send-err");
+  if(!n){ n = document.createElement("div"); n.id="send-err"; n.className="err"; n.style.display="block"; $(".nav").prepend(n); }
+  n.textContent = msg + " Verifique sua internet e tente novamente.";
+}
+
+function doneHTML(){
+  const c = answers[confirmQ.id] || "";
+  const nome = (answers[STEPS[0].qs[0].id]||"").split(" ")[0];
+  let head, dia;
+  if(c.includes("ausência")){ head = `Obrigado por avisar, <b>${esc(nome)}</b>.`; dia = "Ausência registrada"; }
+  else { head = `Presença confirmada, <b>${esc(nome)}</b>. Nos vemos no IPM26!`; dia = c.includes("2 dias") ? "13 e 14/11/2026" : c.includes("13/11") ? "13/11/2026" : "14/11/2026"; }
+  const email = answers[STEPS[0].qs[1].id];
+  return `<div class="done-view">
+    <div class="eyebrow">Formulário enviado</div>
+    <p class="big">${head}</p>
+    <dl class="ticket">
+      <div><dt>Participante</dt><dd>${esc(answers[STEPS[0].qs[0].id]||"")}</dd></div>
+      <div><dt>Data</dt><dd>${dia}</dd></div>
+      <div><dt>Comunicações em</dt><dd>${esc(email||"")}</dd></div>
+    </dl>
+    ${c.includes("ausência") ? "" : `<p style="margin:0;color:var(--ink-2)">Sua vaga é intransferível. As informações do evento chegarão no e-mail acima.</p>`}
+    ${finished.sent ? "" : `<div class="demo">Modo de demonstração: as respostas ainda não estão ligadas a uma planilha, então nada foi gravado.</div>`}
+    <div><button type="button" class="btn ghost" id="again">Enviar outra resposta</button></div>
+  </div>`;
+}
+function bindDone(){ $("#again").addEventListener("click", ()=>{ answers={}; cur=0; finished=null; render(); scrollTop(); }); }
+
+document.addEventListener("click", e=>{
+  const b = e.target.closest("[data-go]"); if(!b) return;
+  const i = +b.dataset.go; if(!finished && i < cur && stepActive(i)){ cur = i; render(); }
+});
+
+// hot reload keeps a half-filled form
+window.claude?.hot?.snapshot?.(() => ({answers, cur, finished}));
+const boot = (d={}) => { if(d.answers){ answers=d.answers; cur=d.cur||0; finished=d.finished||null; } render(); };
+window.claude?.hot?.ready ? window.claude.hot.ready(boot) : boot(window.claude?.hot?.data ?? {});
+
+/* ---------- área administrativa + painel ---------- */
+const ADMIN_USER = "", ADMIN_PASS = ""; // usados só dentro do claude.ai; no site, quem confere a senha é o Apps Script
+const BR = {"w": 600, "h": 599, "p": {"SP": "M430.0,449.5L429.5,451.5L427.6,452.0L426.7,451.0L428.6,448.8L430.0,449.5ZM318.0,429.3L320.8,425.6L322.6,425.0L325.0,423.1L327.3,422.0L329.4,420.2L330.2,417.7L332.6,414.7L334.2,413.6L333.3,411.8L336.8,408.7L336.7,406.0L340.3,401.5L340.5,398.8L344.8,393.7L347.6,392.7L349.7,389.8L351.5,388.2L354.6,387.0L356.1,385.4L358.0,385.2L359.2,386.4L365.9,387.5L370.7,387.6L373.1,388.5L374.7,388.3L374.3,391.4L375.3,393.3L376.3,393.4L377.9,391.1L378.9,392.5L378.9,395.1L380.4,395.2L380.1,393.0L380.8,391.5L389.9,391.0L392.0,391.7L393.2,389.8L394.1,391.2L394.9,389.5L397.3,389.1L398.1,390.0L400.8,389.0L401.2,390.2L404.1,393.0L403.1,396.3L405.1,398.0L405.6,399.6L404.0,402.3L403.8,403.9L404.8,405.0L405.1,407.3L406.0,408.4L406.7,411.6L409.4,411.0L413.7,412.8L413.9,413.8L411.2,418.2L411.7,420.8L410.5,422.0L411.9,423.2L410.3,426.0L411.1,427.4L414.6,429.5L413.3,431.7L414.7,432.8L414.7,434.3L417.8,435.2L421.2,434.3L421.9,434.9L423.5,434.0L422.8,432.5L425.1,430.9L426.7,431.9L428.4,432.0L433.6,429.5L436.9,428.7L437.7,429.1L439.5,431.9L440.8,432.3L445.4,432.2L446.0,433.9L444.4,435.6L441.5,435.9L436.8,437.8L436.5,440.1L435.6,441.1L437.4,443.5L435.1,443.2L432.8,444.4L432.4,445.7L431.3,445.2L430.5,446.5L429.1,446.4L427.1,447.7L427.4,450.1L421.0,448.8L417.0,449.9L416.5,452.0L414.1,451.7L410.4,453.3L405.0,456.3L404.5,458.0L401.8,459.8L396.5,462.7L393.1,465.4L391.6,467.1L392.5,464.9L390.9,467.0L391.6,467.4L390.6,469.5L388.6,471.1L389.4,469.9L387.8,469.8L386.8,466.5L384.3,465.6L382.8,467.4L382.1,467.0L382.6,463.2L383.4,462.2L381.6,461.1L379.3,461.3L375.9,460.2L375.0,461.0L372.1,460.6L371.9,458.5L373.2,455.6L370.8,451.6L368.2,448.1L369.0,445.8L367.6,442.6L368.2,441.1L368.0,438.8L366.7,436.4L364.2,435.3L363.4,433.3L358.8,433.8L354.0,433.2L351.8,433.5L350.5,431.6L347.2,430.7L343.8,428.8L341.0,429.3L336.4,428.1L333.7,426.7L331.5,428.6L321.1,427.4L318.0,429.3Z", "MA": "M452.2,125.1L452.5,127.0L451.0,128.7L451.8,123.8L452.2,125.1ZM493.4,124.5L493.4,128.7L490.9,131.8L487.6,134.9L483.9,135.6L483.2,135.2L480.4,139.0L480.6,140.4L479.5,142.5L475.5,147.4L476.1,149.8L477.4,151.5L476.0,154.0L476.0,155.8L477.5,158.3L478.1,161.8L477.7,164.2L474.2,168.6L473.4,168.9L473.7,175.7L475.4,177.8L477.1,178.8L476.9,182.4L476.0,185.3L475.0,186.5L471.6,186.6L467.6,187.9L464.3,185.6L458.7,186.5L455.3,190.1L454.5,191.7L452.3,192.3L448.2,196.1L446.6,195.5L443.4,197.4L439.2,198.4L436.5,200.1L435.4,203.1L434.8,207.5L432.2,211.8L430.8,215.9L429.2,217.2L428.3,219.4L429.4,223.3L429.5,225.6L430.9,227.7L430.3,228.8L429.8,236.0L428.3,238.7L428.4,240.9L426.2,239.1L422.3,238.5L420.5,235.9L420.0,233.6L417.6,231.8L419.7,228.9L419.3,228.0L416.4,226.6L415.3,225.0L415.1,222.8L413.6,221.3L411.5,220.7L414.2,217.6L414.7,213.7L416.1,211.5L420.6,211.0L419.9,209.8L421.2,205.9L420.8,204.3L419.6,203.4L415.0,204.1L412.8,205.4L410.8,202.5L407.8,199.4L405.6,196.1L405.4,193.5L403.4,193.9L401.9,192.1L403.5,191.6L405.5,189.3L405.9,184.5L407.2,181.2L407.7,177.4L406.9,175.4L407.2,171.8L406.2,169.8L406.4,167.4L405.3,165.7L402.5,164.4L400.8,164.2L400.4,162.6L398.3,161.9L395.9,162.2L393.1,160.8L390.6,161.0L388.9,163.2L387.2,163.6L387.0,163.4L401.4,152.1L403.7,152.2L404.8,151.4L406.8,148.1L407.9,147.2L409.4,144.2L412.9,140.5L413.5,136.8L414.7,133.7L416.6,132.6L419.1,129.0L419.4,125.9L420.5,125.3L419.1,123.5L422.8,120.0L423.1,115.8L424.8,114.9L426.1,111.0L426.1,109.2L424.6,108.0L426.4,107.2L426.4,104.2L428.2,99.9L430.1,97.7L429.5,99.8L430.9,99.4L433.0,100.8L433.8,98.8L434.8,100.9L434.5,102.4L436.5,100.9L436.8,103.1L437.7,102.4L437.4,104.5L440.1,101.8L440.4,103.1L439.2,104.0L439.9,108.3L441.4,107.3L441.8,104.8L443.5,103.9L445.6,104.5L446.9,103.2L446.3,105.2L447.9,107.7L452.2,109.9L452.5,112.8L449.6,116.4L450.5,116.5L452.6,114.6L454.1,115.4L454.7,117.1L454.2,118.6L452.4,118.0L452.4,119.6L450.5,123.1L449.6,128.0L450.6,128.6L448.1,130.8L448.1,131.7L450.2,130.5L453.5,127.0L454.6,120.8L459.2,118.5L459.5,120.9L458.1,122.7L455.0,124.5L457.3,124.1L457.1,125.8L458.4,124.1L459.3,124.4L460.0,122.2L461.4,120.8L463.9,120.6L463.1,119.4L464.2,118.8L465.1,116.5L466.3,116.4L466.0,118.0L468.7,121.0L469.3,119.5L468.7,117.7L470.9,117.8L480.1,121.2L484.0,124.3L487.0,124.4L487.4,125.5L489.7,125.0L491.9,125.6L490.8,124.1L489.4,124.6L487.2,124.0L487.4,123.2L489.3,124.5L489.6,123.2L493.4,124.5Z", "PA": "M395.2,97.0L393.8,95.9L395.7,93.8L396.2,95.4L395.2,97.0ZM355.0,90.1L354.8,92.2L350.9,93.9L351.4,91.6L355.0,90.1ZM348.9,89.8L350.0,91.0L347.9,97.1L347.3,96.7L345.7,99.4L340.3,103.5L338.6,104.0L337.7,103.0L338.9,100.3L342.1,97.4L342.0,94.2L344.6,90.5L347.6,89.1L348.9,89.8ZM346.6,88.3L348.3,84.6L349.8,83.3L350.1,85.3L349.3,86.5L346.6,88.3ZM354.0,85.9L351.8,84.8L353.2,81.4L356.0,80.5L358.1,82.5L354.0,85.9ZM375.8,80.1L377.9,81.3L376.5,83.1L372.2,83.4L370.4,82.8L373.5,80.3L375.8,80.1ZM361.1,81.2L359.2,81.2L358.0,80.1L358.4,78.4L360.9,79.2L361.1,81.2ZM364.5,77.1L366.1,77.8L367.2,76.6L369.0,76.7L373.2,75.3L374.6,75.3L375.1,76.6L372.6,78.0L370.5,81.0L367.7,82.0L366.7,81.0L362.5,80.5L362.2,77.9L364.5,77.1ZM362.5,73.1L362.8,76.0L361.2,78.6L359.8,78.0L361.5,74.8L361.2,72.8L362.2,71.7L362.5,73.1ZM367.4,72.2L367.1,73.4L363.5,75.7L363.2,73.1L364.1,72.1L366.8,71.3L367.4,72.2ZM375.1,107.1L372.9,108.4L370.5,109.1L367.7,108.0L367.4,106.7L365.4,108.6L364.3,107.9L364.1,106.1L363.2,108.9L361.5,109.3L358.5,108.3L358.7,107.1L355.4,103.1L355.6,97.9L359.2,99.4L355.6,96.8L355.8,91.4L357.7,85.3L358.8,84.2L361.5,83.7L362.2,82.8L366.4,83.2L373.2,84.9L376.1,84.6L379.9,83.4L385.1,83.7L384.9,84.5L389.0,84.7L392.1,85.2L392.9,86.9L391.6,88.7L390.4,94.9L388.4,96.7L388.8,97.9L385.7,99.9L386.4,100.9L385.8,103.0L384.1,101.1L383.5,101.7L385.7,103.4L382.2,104.8L380.9,102.7L380.3,106.0L378.7,106.1L377.1,104.7L377.5,106.5L375.4,105.6L375.1,107.1ZM428.2,99.9L426.4,104.2L426.4,107.2L424.6,108.0L426.1,109.2L426.1,111.0L424.8,114.9L423.1,115.8L422.8,120.0L419.1,123.5L420.5,125.3L419.4,125.9L419.1,129.0L416.6,132.6L414.7,133.7L413.5,136.8L412.9,140.5L409.4,144.2L407.9,147.2L406.8,148.1L404.8,151.4L403.7,152.2L401.4,152.1L387.0,163.4L387.2,163.6L389.8,164.5L392.6,164.4L396.1,168.2L393.8,169.4L394.8,172.3L393.1,173.3L393.8,175.1L391.6,176.2L392.1,179.2L390.4,179.0L388.8,180.3L387.6,183.8L382.6,185.5L379.6,187.4L379.3,188.3L379.8,192.3L376.9,196.5L376.6,198.0L377.8,199.8L380.0,201.2L379.5,205.2L377.7,210.1L376.6,210.9L373.7,216.7L370.8,218.3L366.2,224.4L364.6,230.2L363.3,232.4L347.2,231.4L289.5,227.8L268.6,226.5L265.3,225.1L263.9,225.4L262.9,223.5L259.7,222.9L258.8,220.1L255.8,218.7L253.0,216.2L251.5,215.7L249.9,210.7L250.5,207.6L248.4,204.8L246.6,199.4L244.0,195.1L242.8,194.0L241.5,190.5L238.8,188.1L237.7,184.2L240.3,181.1L263.6,130.1L269.3,117.8L269.1,116.1L267.6,114.4L265.5,115.3L263.7,114.6L263.8,112.7L259.7,110.9L258.5,109.0L254.7,107.7L249.7,105.6L247.1,103.4L241.9,100.2L238.4,97.3L237.6,94.5L234.7,93.0L232.8,90.7L233.0,87.8L231.2,86.6L230.9,77.8L229.4,61.0L230.5,62.5L232.5,62.7L233.9,61.5L236.4,61.7L236.5,59.1L238.5,58.3L239.3,56.7L242.1,57.8L244.0,57.9L244.6,55.7L247.6,55.0L251.2,55.0L253.2,52.0L254.6,51.0L256.1,51.3L258.2,50.2L259.7,51.8L262.8,52.5L265.4,51.5L269.6,51.6L274.9,53.1L276.4,52.3L276.6,49.9L273.5,45.4L275.1,44.4L275.4,42.5L279.5,44.5L281.3,43.9L284.5,44.0L286.0,42.6L291.0,42.2L292.5,43.7L294.1,43.5L295.1,46.5L293.9,50.4L294.7,54.0L300.4,54.2L303.5,55.8L304.9,58.1L306.0,57.8L307.8,59.7L311.3,59.4L312.9,60.3L313.2,62.2L314.8,61.9L314.3,63.5L315.1,66.7L317.5,69.2L319.8,70.2L319.6,75.3L320.9,77.4L321.3,80.4L322.8,84.2L324.2,83.9L327.3,87.3L327.2,89.8L328.8,91.1L329.0,94.6L330.8,94.5L331.4,97.6L336.1,99.8L338.4,98.9L338.2,101.5L335.9,102.7L334.0,101.8L329.6,104.0L326.4,104.9L326.0,105.7L330.4,105.2L332.6,104.5L333.1,107.3L335.1,106.0L338.3,105.3L342.0,102.7L348.2,99.9L349.9,98.2L351.9,97.1L352.3,95.6L355.1,95.6L355.0,97.4L353.0,98.5L355.1,100.1L355.2,103.2L357.2,106.0L357.7,107.9L355.0,110.8L357.0,110.5L357.6,108.9L360.9,110.9L361.2,112.9L363.4,110.3L365.3,110.6L366.1,109.6L368.1,109.3L369.7,110.1L370.0,112.6L370.7,110.4L373.1,110.7L374.7,108.7L374.9,109.8L378.0,107.6L378.9,108.4L377.5,110.3L376.3,114.8L374.7,118.3L374.8,119.9L372.6,122.2L375.0,121.6L376.5,119.2L376.6,117.6L378.1,115.1L379.6,111.2L381.3,108.4L383.7,105.8L384.9,105.8L383.7,108.7L386.1,106.2L388.8,102.5L390.4,105.6L392.1,106.5L391.2,104.5L393.6,103.9L390.9,103.5L391.2,100.9L393.4,101.5L394.0,99.5L391.5,99.2L392.2,97.8L395.6,97.1L396.5,95.1L396.3,93.2L398.1,91.4L399.3,93.2L399.2,91.0L401.4,91.5L402.7,89.5L404.9,91.6L405.1,90.1L406.5,93.0L408.2,93.1L406.9,90.4L413.0,91.6L412.9,94.1L414.7,92.2L415.7,93.3L416.9,92.2L418.7,94.8L420.3,94.6L420.2,96.0L421.8,94.8L422.1,97.0L424.5,97.0L426.9,95.4L426.1,98.9L428.1,97.8L428.2,99.9Z", "SC": "M380.6,509.5L380.4,508.3L381.2,505.7L381.2,503.5L382.5,502.9L383.1,504.1L382.5,506.2L380.6,509.5ZM381.0,488.0L379.4,486.2L381.6,484.1L382.4,485.2L381.0,488.0ZM381.3,481.2L381.2,483.9L379.0,484.9L378.4,482.4L378.6,485.9L380.6,488.2L379.7,490.0L379.4,492.5L380.8,493.4L380.2,494.4L380.2,498.5L381.5,498.8L381.8,500.2L380.1,500.3L380.7,502.2L379.4,504.2L380.3,506.0L379.3,506.8L380.2,510.1L378.8,515.5L376.9,519.6L376.8,517.9L375.8,517.4L375.9,519.4L376.9,520.3L376.4,521.5L374.7,522.0L369.0,526.1L366.1,529.1L363.8,532.0L360.6,529.9L358.9,530.7L359.2,532.4L357.7,531.2L357.8,529.9L359.1,528.3L360.0,528.5L360.8,526.2L360.8,523.8L363.1,521.3L364.4,520.9L363.7,518.9L362.0,518.5L358.2,518.9L357.5,518.4L352.0,517.1L350.0,513.6L348.8,513.1L348.6,511.6L346.8,510.1L346.0,508.4L344.0,507.5L340.9,504.4L339.6,504.4L338.1,502.9L336.5,503.6L334.8,503.2L333.3,500.6L331.1,499.6L330.4,500.4L328.3,499.9L327.4,498.7L323.9,499.6L321.6,497.9L320.2,498.7L319.1,496.9L315.5,498.3L316.0,497.1L314.8,496.4L313.0,497.3L312.9,498.2L310.6,497.6L308.3,497.8L310.1,493.4L309.6,490.6L309.9,485.7L310.8,483.9L313.6,484.4L315.0,483.6L318.2,485.6L322.5,485.2L324.9,486.2L331.0,487.0L333.6,489.1L335.4,489.4L340.6,489.5L341.6,491.0L344.2,489.7L343.6,486.9L344.1,485.7L346.6,484.0L349.0,484.7L351.3,484.1L352.6,481.6L355.2,481.0L357.2,481.5L362.3,481.0L367.1,484.4L371.3,482.8L373.9,481.1L381.3,481.2Z", "BA": "M532.5,293.4L531.6,297.6L531.5,295.0L530.7,293.3L532.5,293.4ZM508.4,364.4L508.6,361.0L504.8,357.5L505.0,356.0L503.2,354.7L504.0,352.7L503.9,350.7L504.9,347.6L505.8,346.7L508.3,347.0L509.3,342.1L511.0,341.9L512.4,339.6L514.2,338.4L515.5,335.3L510.3,330.4L506.8,329.5L505.9,329.8L504.0,328.4L502.6,328.6L500.0,327.4L496.7,328.9L494.2,327.8L494.0,324.3L487.7,317.9L485.6,318.7L483.4,318.7L476.3,314.4L475.6,314.5L470.9,310.2L466.9,309.4L462.9,311.6L459.7,310.6L457.3,309.3L457.2,307.8L458.7,304.5L458.0,304.0L450.9,302.6L447.2,304.0L442.9,306.5L442.2,307.7L438.9,309.5L437.0,309.7L435.5,311.4L433.4,312.7L432.0,312.6L429.5,315.4L426.4,315.3L424.1,317.1L425.7,313.1L425.0,311.2L426.8,308.6L426.1,306.1L426.9,303.3L423.9,300.6L422.0,295.7L421.9,292.4L423.4,288.6L424.8,287.7L425.0,286.2L423.6,285.6L424.1,282.7L425.1,281.0L422.9,279.1L424.1,276.2L424.2,274.6L421.9,273.3L421.7,268.8L423.6,266.8L425.7,265.8L424.5,264.3L423.2,264.4L423.3,262.6L425.4,261.7L425.8,260.7L424.1,259.7L420.6,259.0L418.5,256.1L420.2,254.0L421.7,250.8L423.8,249.5L422.8,247.6L426.1,245.0L429.6,243.3L431.2,241.2L433.5,241.2L435.5,243.7L435.9,245.8L437.8,248.3L441.8,250.2L445.8,249.7L446.3,248.6L449.6,246.3L451.4,245.8L454.5,246.5L455.9,245.9L457.9,243.8L459.2,243.5L462.5,237.5L463.0,233.9L462.4,233.0L461.1,228.0L462.9,228.3L464.4,226.6L466.7,226.2L467.7,227.9L470.7,228.1L471.6,227.4L474.6,228.9L475.7,230.3L477.2,229.9L479.3,230.7L479.9,229.4L481.3,229.7L484.1,226.8L486.5,226.7L488.2,225.3L491.1,226.2L492.9,224.4L493.0,222.0L496.6,221.4L498.7,217.9L501.9,218.0L505.9,220.5L505.8,223.3L506.3,225.1L508.5,226.2L508.7,228.2L507.6,229.9L509.6,230.5L513.0,228.6L514.2,228.6L515.2,224.7L517.6,224.8L521.0,222.9L521.1,220.6L524.2,220.0L524.4,218.0L528.8,216.2L530.5,216.7L531.5,218.6L534.4,219.6L535.2,220.5L537.0,220.3L539.2,221.5L539.9,223.5L541.9,221.3L542.1,223.3L543.6,224.7L545.0,224.1L546.1,229.5L546.6,230.9L549.3,232.0L549.6,232.9L548.7,234.1L549.8,238.4L552.4,241.8L552.2,245.4L551.3,247.2L551.9,250.5L549.0,252.4L545.7,251.6L544.9,254.4L546.7,256.6L547.2,258.9L548.5,260.1L548.0,262.0L550.2,263.4L551.0,264.8L553.0,265.4L555.7,264.9L557.5,264.3L556.4,265.8L552.6,273.2L546.1,282.3L541.8,286.7L538.8,287.9L539.4,286.2L539.2,283.1L537.4,282.7L536.0,281.4L535.0,284.2L533.8,284.8L536.4,285.4L537.7,287.3L531.9,291.3L531.9,293.0L530.6,292.9L531.4,297.8L531.0,300.3L529.1,298.5L530.5,301.0L529.7,301.8L530.7,302.9L531.7,301.4L531.7,303.0L530.5,306.3L530.5,307.9L528.9,313.5L529.4,315.8L529.3,322.4L529.9,330.1L530.6,332.2L527.1,341.3L525.5,347.0L525.6,348.6L524.0,352.6L523.9,359.6L524.4,360.8L522.2,363.6L518.7,365.6L516.7,368.4L515.8,370.3L508.7,364.9L508.4,364.4Z", "AP": "M366.7,66.9L366.2,66.5L369.0,64.8L366.2,69.6L363.5,69.7L364.3,68.0L366.7,66.9ZM360.7,48.7L360.6,47.6L363.0,51.3L360.7,52.3L359.7,50.5L360.7,48.7ZM338.4,98.9L336.1,99.8L331.4,97.6L330.8,94.5L329.0,94.6L328.8,91.1L327.2,89.8L327.3,87.3L324.2,83.9L322.8,84.2L321.3,80.4L320.9,77.4L319.6,75.3L319.8,70.2L317.5,69.2L315.1,66.7L314.3,63.5L314.8,61.9L313.2,62.2L312.9,60.3L311.3,59.4L307.8,59.7L306.0,57.8L304.9,58.1L303.5,55.8L300.4,54.2L294.7,54.0L293.9,50.4L295.1,46.5L294.1,43.5L295.2,43.7L295.2,45.6L297.4,45.7L298.7,47.3L304.0,48.8L308.7,45.8L313.3,46.8L316.2,45.2L317.9,46.7L322.1,47.8L323.4,46.6L326.0,45.0L328.4,41.8L328.1,40.8L331.5,34.3L331.4,33.2L333.4,31.2L336.7,25.7L337.1,24.4L339.4,21.9L340.2,20.1L342.5,18.8L343.1,16.5L344.6,18.2L343.6,14.4L344.3,13.1L346.3,14.3L348.8,17.3L349.5,19.4L349.6,25.2L350.5,21.2L351.0,21.6L350.9,29.4L353.2,37.9L353.8,38.3L356.3,44.7L357.3,47.9L360.6,53.3L365.0,53.3L367.7,54.3L369.2,55.6L369.7,60.3L369.1,61.7L365.7,62.9L369.0,62.5L369.5,63.3L365.2,67.1L363.0,68.6L360.6,71.3L358.4,75.5L355.6,78.6L353.5,78.8L351.3,81.5L347.5,82.6L348.5,83.2L347.4,84.5L345.5,88.4L341.6,92.7L341.2,97.2L338.4,98.9Z", "MS": "M305.0,448.4L302.7,450.0L300.1,447.9L297.1,446.3L292.8,448.8L289.2,449.6L286.4,449.0L285.7,445.3L284.5,443.3L284.6,439.8L284.4,437.5L282.9,434.0L282.5,431.2L282.9,428.3L281.3,426.9L281.0,424.7L279.3,423.5L274.7,423.0L273.0,422.0L271.5,419.9L270.2,420.2L268.0,422.9L267.3,422.2L265.5,423.4L260.2,421.9L257.8,422.3L254.4,421.9L253.8,420.8L251.2,421.4L249.1,419.8L249.9,417.8L249.5,417.0L250.2,414.5L249.6,413.5L249.6,410.8L250.7,408.9L250.6,404.4L251.1,403.1L249.7,402.4L250.5,401.5L249.2,400.7L250.4,399.9L248.6,399.2L248.4,395.2L247.0,394.3L245.9,391.1L250.1,388.2L246.2,384.4L250.8,374.0L251.9,373.8L250.9,371.7L254.0,360.5L251.3,355.4L251.3,353.6L253.2,354.9L255.9,355.5L260.1,354.2L262.3,352.3L262.5,351.0L264.1,349.5L265.5,347.0L271.8,346.4L273.0,345.3L275.1,344.8L279.8,347.3L282.4,347.9L283.5,349.6L288.7,352.4L292.9,351.8L295.9,349.8L298.3,349.7L299.9,350.7L300.3,352.1L304.0,351.4L306.8,348.8L308.7,346.5L310.8,345.7L309.8,351.6L308.2,352.4L306.2,355.6L310.1,357.3L316.3,357.1L320.0,357.5L319.9,361.7L320.9,363.2L322.1,362.5L323.9,363.2L322.3,367.0L322.6,367.6L326.3,368.3L328.1,368.1L330.3,369.8L331.4,369.7L334.5,371.8L340.5,374.7L343.9,375.4L345.3,376.7L347.8,377.2L350.3,380.1L349.3,384.4L349.7,389.8L347.6,392.7L344.8,393.7L340.5,398.8L340.3,401.5L336.7,406.0L336.8,408.7L333.3,411.8L334.2,413.6L332.6,414.7L330.2,417.7L329.4,420.2L327.3,422.0L325.0,423.1L322.6,425.0L320.8,425.6L318.0,429.3L313.5,431.3L311.8,432.7L311.2,435.5L310.0,438.4L306.9,440.4L305.1,446.4L305.0,448.4Z", "MG": "M349.7,389.8L349.3,384.4L350.3,380.1L351.7,380.4L352.1,377.4L354.9,374.7L356.5,374.7L357.2,371.9L359.8,368.7L364.7,367.2L367.6,367.4L372.1,365.6L373.9,367.6L377.4,364.4L380.1,363.2L390.8,364.0L392.1,364.8L395.4,365.5L399.1,363.7L400.6,362.0L404.7,359.9L403.8,357.1L405.1,353.9L404.8,352.0L401.3,350.4L401.9,348.5L407.2,343.2L405.6,338.3L403.0,335.6L404.6,332.7L405.4,328.7L405.4,328.7L405.4,328.7L405.5,328.7L405.4,328.7L406.5,328.6L408.1,326.9L408.8,327.2L412.5,325.9L412.1,322.0L411.2,319.5L412.4,317.9L411.4,316.4L412.0,313.6L414.4,313.2L415.8,314.0L417.1,313.6L416.8,309.8L417.8,308.6L419.7,309.6L420.9,311.7L424.2,312.1L425.0,311.2L425.7,313.1L424.1,317.1L426.4,315.3L429.5,315.4L432.0,312.6L433.4,312.7L435.5,311.4L437.0,309.7L438.9,309.5L442.2,307.7L442.9,306.5L447.2,304.0L450.9,302.6L458.0,304.0L458.7,304.5L457.2,307.8L457.3,309.3L459.7,310.6L462.9,311.6L466.9,309.4L470.9,310.2L475.6,314.5L476.3,314.4L483.4,318.7L485.6,318.7L487.7,317.9L494.0,324.3L494.2,327.8L496.7,328.9L500.0,327.4L502.6,328.6L504.0,328.4L505.9,329.8L506.8,329.5L510.3,330.4L515.5,335.3L514.2,338.4L512.4,339.6L511.0,341.9L509.3,342.1L508.3,347.0L505.8,346.7L504.9,347.6L503.9,350.7L504.0,352.7L503.2,354.7L505.0,356.0L504.8,357.5L508.6,361.0L508.4,364.4L505.3,362.8L501.7,363.5L498.1,363.5L499.9,365.5L497.9,365.5L495.7,366.6L494.4,368.4L496.3,370.9L495.6,373.8L497.1,374.8L496.9,376.5L492.4,377.0L494.3,377.6L494.9,380.0L496.3,381.8L496.4,384.2L495.7,386.9L492.6,389.6L491.9,392.8L490.1,394.1L489.0,397.7L488.4,398.0L483.9,397.6L481.7,400.0L482.5,400.9L482.0,404.4L481.1,406.3L479.5,408.3L477.6,408.3L475.3,414.7L474.1,415.7L472.8,419.2L474.0,420.5L462.9,424.5L458.5,423.9L456.7,424.6L451.7,424.4L447.6,425.8L445.8,426.9L442.6,426.7L439.3,428.3L436.9,428.7L433.6,429.5L428.4,432.0L426.7,431.9L425.1,430.9L422.8,432.5L423.5,434.0L421.9,434.9L421.2,434.3L417.8,435.2L414.7,434.3L414.7,432.8L413.3,431.7L414.6,429.5L411.1,427.4L410.3,426.0L411.9,423.2L410.5,422.0L411.7,420.8L411.2,418.2L413.9,413.8L413.7,412.8L409.4,411.0L406.7,411.6L406.0,408.4L405.1,407.3L404.8,405.0L403.8,403.9L404.0,402.3L405.6,399.6L405.1,398.0L403.1,396.3L404.1,393.0L401.2,390.2L400.8,389.0L398.1,390.0L397.3,389.1L394.9,389.5L394.1,391.2L393.2,389.8L392.0,391.7L389.9,391.0L380.8,391.5L380.1,393.0L380.4,395.2L378.9,395.1L378.9,392.5L377.9,391.1L376.3,393.4L375.3,393.3L374.3,391.4L374.7,388.3L373.1,388.5L370.7,387.6L365.9,387.5L359.2,386.4L358.0,385.2L356.1,385.4L354.6,387.0L351.5,388.2L349.7,389.8Z", "GO": "M404.6,332.7L403.0,335.6L405.6,338.3L407.2,343.2L401.9,348.5L401.3,350.4L404.8,352.0L405.1,353.9L403.8,357.1L404.7,359.9L400.6,362.0L399.1,363.7L395.4,365.5L392.1,364.8L390.8,364.0L380.1,363.2L377.4,364.4L373.9,367.6L372.1,365.6L367.6,367.4L364.7,367.2L359.8,368.7L357.2,371.9L356.5,374.7L354.9,374.7L352.1,377.4L351.7,380.4L350.3,380.1L347.8,377.2L345.3,376.7L343.9,375.4L340.5,374.7L334.5,371.8L331.4,369.7L330.3,369.8L328.1,368.1L326.3,368.3L322.6,367.6L322.3,367.0L323.9,363.2L322.1,362.5L320.9,363.2L319.9,361.7L320.0,357.5L317.3,350.5L317.9,346.2L320.2,342.7L320.6,339.8L323.7,337.9L326.3,334.7L326.6,333.1L325.8,331.0L327.8,330.0L327.8,329.1L330.9,327.2L332.1,325.3L337.5,323.6L340.6,317.1L341.0,314.5L343.1,312.3L346.1,310.7L348.2,311.1L349.3,309.7L351.4,304.0L351.0,302.2L352.1,298.0L353.1,297.7L353.1,291.7L354.1,291.2L354.7,289.1L356.2,287.3L357.6,284.4L357.4,282.0L358.8,280.1L359.0,278.4L359.6,276.2L361.1,273.8L364.1,271.7L364.3,272.9L362.2,277.6L362.7,279.9L370.9,283.7L375.4,284.9L376.8,281.1L379.3,277.1L381.1,275.9L381.4,277.3L383.9,279.3L384.7,282.7L384.6,286.7L385.9,286.5L386.4,284.1L390.7,284.3L394.2,282.6L393.7,284.2L401.0,287.1L400.4,284.0L401.7,283.4L403.1,286.3L409.9,283.4L413.9,283.1L416.7,280.9L422.9,279.1L425.1,281.0L424.1,282.7L423.6,285.6L425.0,286.2L424.8,287.7L423.4,288.6L421.9,292.4L422.0,295.7L423.9,300.6L426.9,303.3L426.1,306.1L426.8,308.6L425.0,311.2L424.2,312.1L420.9,311.7L419.7,309.6L417.8,308.6L416.8,309.8L417.1,313.6L415.8,314.0L414.4,313.2L412.0,313.6L411.4,316.4L412.4,317.9L411.2,319.5L412.1,322.0L412.5,325.9L408.8,327.2L408.1,326.9L406.5,328.6L405.4,328.7L404.6,327.8L405.6,321.7L403.9,320.3L392.7,319.9L391.7,322.9L392.2,323.6L391.0,325.2L392.4,328.3L405.4,328.7L405.4,328.7L405.4,328.7L404.6,332.7Z", "RS": "M363.8,532.0L362.4,533.8L359.1,539.4L355.1,549.3L349.5,558.1L343.6,564.6L338.1,569.0L334.1,571.4L331.1,574.6L332.1,571.6L331.2,570.1L331.7,569.4L333.3,570.4L336.2,569.3L340.1,565.1L342.4,564.3L343.3,562.7L343.7,558.2L345.7,558.4L346.4,556.1L349.4,554.2L350.2,551.9L350.2,547.5L351.3,549.5L352.3,547.0L351.4,545.0L350.5,546.5L347.4,546.7L347.2,548.6L345.6,547.7L345.9,546.2L343.0,544.5L342.4,541.9L341.8,545.3L343.6,547.4L342.1,551.4L340.9,551.9L341.1,555.3L339.8,555.4L339.4,557.3L339.9,558.4L337.5,559.1L337.3,561.0L333.5,561.7L332.5,563.6L332.3,566.9L331.9,565.7L331.1,567.6L329.7,568.1L329.3,570.5L330.4,570.9L329.2,571.8L329.5,573.6L331.2,572.8L331.1,574.9L328.9,576.6L327.3,579.9L325.9,584.6L323.9,589.2L321.3,592.5L315.5,597.9L314.1,598.9L312.0,597.5L313.3,595.5L313.1,591.1L314.9,588.4L315.7,589.0L317.0,586.9L317.5,584.5L319.1,584.8L320.6,586.3L322.5,585.4L324.4,581.1L324.4,579.8L322.9,577.3L323.7,574.9L322.7,575.2L321.4,577.5L322.1,578.1L319.3,579.8L319.1,581.1L316.9,582.3L313.7,580.8L310.7,577.3L310.4,575.6L309.1,572.8L305.2,570.2L304.3,570.7L300.0,567.1L299.7,565.7L298.3,564.0L295.3,563.4L292.5,561.0L291.8,561.8L289.4,560.4L288.2,557.7L285.0,554.5L281.4,558.1L279.5,558.2L279.4,553.9L276.4,550.3L274.5,549.2L271.0,545.6L268.3,543.4L265.0,543.5L263.3,546.4L259.0,546.3L257.9,544.9L259.3,544.3L261.6,541.7L262.0,539.2L264.6,538.1L270.1,531.3L270.8,528.9L273.5,527.1L273.8,525.6L275.0,524.5L275.2,522.9L276.6,522.4L278.7,519.9L278.8,518.5L280.3,517.9L281.1,516.2L282.9,517.1L283.5,515.8L282.0,514.4L284.2,512.6L286.5,512.0L288.2,509.4L290.0,508.5L292.1,508.3L291.3,507.3L293.6,506.7L293.8,504.9L298.8,502.8L301.3,501.3L302.2,501.9L303.6,499.0L304.9,499.7L306.6,497.6L308.3,497.8L310.6,497.6L312.9,498.2L313.0,497.3L314.8,496.4L316.0,497.1L315.5,498.3L319.1,496.9L320.2,498.7L321.6,497.9L323.9,499.6L327.4,498.7L328.3,499.9L330.4,500.4L331.1,499.6L333.3,500.6L334.8,503.2L336.5,503.6L338.1,502.9L339.6,504.4L340.9,504.4L344.0,507.5L346.0,508.4L346.8,510.1L348.6,511.6L348.8,513.1L350.0,513.6L352.0,517.1L357.5,518.4L358.2,518.9L362.0,518.5L363.7,518.9L364.4,520.9L363.1,521.3L360.8,523.8L360.8,526.2L360.0,528.5L359.1,528.3L357.8,529.9L357.7,531.2L359.2,532.4L358.9,530.7L360.6,529.9L363.8,532.0Z", "TO": "M428.4,240.9L430.2,241.2L431.2,241.2L429.6,243.3L426.1,245.0L422.8,247.6L423.8,249.5L421.7,250.8L420.2,254.0L418.5,256.1L420.6,259.0L424.1,259.7L425.8,260.7L425.4,261.7L423.3,262.6L423.2,264.4L424.5,264.3L425.7,265.8L423.6,266.8L421.7,268.8L421.9,273.3L424.2,274.6L424.1,276.2L422.9,279.1L416.7,280.9L413.9,283.1L409.9,283.4L403.1,286.3L401.7,283.4L400.4,284.0L401.0,287.1L393.7,284.2L394.2,282.6L390.7,284.3L386.4,284.1L385.9,286.5L384.6,286.7L384.7,282.7L383.9,279.3L381.4,277.3L381.1,275.9L379.3,277.1L376.8,281.1L375.4,284.9L370.9,283.7L362.7,279.9L362.2,277.6L364.3,272.9L364.1,271.7L361.1,273.8L359.6,276.2L359.0,278.4L357.3,277.9L356.3,275.1L357.2,272.1L356.3,268.4L356.2,265.4L356.7,263.6L355.9,261.0L356.7,259.4L355.4,257.8L357.4,250.6L357.1,249.1L357.7,244.8L358.9,243.3L360.3,240.0L361.1,236.4L362.3,235.1L363.3,232.4L364.6,230.2L366.2,224.4L370.8,218.3L373.7,216.7L376.6,210.9L377.7,210.1L379.5,205.2L380.0,201.2L377.8,199.8L376.6,198.0L376.9,196.5L379.8,192.3L379.3,188.3L379.6,187.4L382.6,185.5L387.6,183.8L388.8,180.3L390.4,179.0L392.1,179.2L391.6,176.2L393.8,175.1L393.1,173.3L394.8,172.3L393.8,169.4L396.1,168.2L392.6,164.4L389.8,164.5L387.2,163.6L388.9,163.2L390.6,161.0L393.1,160.8L395.9,162.2L398.3,161.9L400.4,162.6L400.8,164.2L402.5,164.4L405.3,165.7L406.4,167.4L406.2,169.8L407.2,171.8L406.9,175.4L407.7,177.4L407.2,181.2L405.9,184.5L405.5,189.3L403.5,191.6L401.9,192.1L403.4,193.9L405.4,193.5L405.6,196.1L407.8,199.4L410.8,202.5L412.8,205.4L415.0,204.1L419.6,203.4L420.8,204.3L421.2,205.9L419.9,209.8L420.6,211.0L416.1,211.5L414.7,213.7L414.2,217.6L411.5,220.7L413.6,221.3L415.1,222.8L415.3,225.0L416.4,226.6L419.3,228.0L419.7,228.9L417.6,231.8L420.0,233.6L420.5,235.9L422.3,238.5L426.2,239.1L428.4,240.9Z", "PI": "M431.2,241.2L430.2,241.2L428.4,240.9L428.3,238.7L429.8,236.0L430.3,228.8L430.9,227.7L429.5,225.6L429.4,223.3L428.3,219.4L429.2,217.2L430.8,215.9L432.2,211.8L434.8,207.5L435.4,203.1L436.5,200.1L439.2,198.4L443.4,197.4L446.6,195.5L448.2,196.1L452.3,192.3L454.5,191.7L455.3,190.1L458.7,186.5L464.3,185.6L467.6,187.9L471.6,186.6L475.0,186.5L476.0,185.3L476.9,182.4L477.1,178.8L475.4,177.8L473.7,175.7L473.4,168.9L474.2,168.6L477.7,164.2L478.1,161.8L477.5,158.3L476.0,155.8L476.0,154.0L477.4,151.5L476.1,149.8L475.5,147.4L479.5,142.5L480.6,140.4L480.4,139.0L483.2,135.2L483.9,135.6L487.6,134.9L490.9,131.8L493.4,128.7L493.4,124.5L494.0,124.2L496.0,126.4L501.1,127.1L502.6,128.5L502.5,129.5L499.8,133.3L499.4,135.2L500.8,139.4L501.8,141.0L502.6,144.7L504.3,146.8L505.0,149.2L502.4,152.5L503.1,158.4L504.9,162.4L504.7,164.6L506.5,166.4L507.3,175.7L508.5,179.6L508.9,183.4L509.8,186.0L513.3,187.3L514.2,188.5L511.5,194.5L512.1,197.6L509.7,198.1L510.7,201.5L510.0,203.3L511.7,204.6L511.6,207.6L510.9,209.1L508.4,210.9L505.7,213.8L504.2,213.6L501.2,216.8L498.7,217.9L496.6,221.4L493.0,222.0L492.9,224.4L491.1,226.2L488.2,225.3L486.5,226.7L484.1,226.8L481.3,229.7L479.9,229.4L479.3,230.7L477.2,229.9L475.7,230.3L474.6,228.9L471.6,227.4L470.7,228.1L467.7,227.9L466.7,226.2L464.4,226.6L462.9,228.3L461.1,228.0L462.4,233.0L463.0,233.9L462.5,237.5L459.2,243.5L457.9,243.8L455.9,245.9L454.5,246.5L451.4,245.8L449.6,246.3L446.3,248.6L445.8,249.7L441.8,250.2L437.8,248.3L435.9,245.8L435.5,243.7L433.5,241.2L431.2,241.2Z", "AL": "M593.4,225.1L590.7,229.5L588.2,231.9L584.4,236.9L582.9,235.4L582.7,237.8L578.9,242.9L575.4,245.7L572.9,249.6L572.1,248.1L570.6,248.0L569.9,245.5L568.9,245.8L566.8,244.7L565.2,242.8L565.2,241.4L561.1,239.3L560.0,237.8L555.9,236.4L549.6,232.9L549.3,232.0L546.6,230.9L546.1,229.5L548.4,227.3L550.2,226.8L552.7,224.2L553.8,222.4L554.7,224.4L557.3,223.9L562.2,228.9L565.8,230.9L567.5,229.5L571.3,230.2L574.9,228.8L578.4,226.0L580.2,224.2L583.5,224.0L584.6,224.8L588.5,223.6L589.7,224.5L593.4,225.1Z", "PB": "M597.9,186.4L597.7,188.2L598.6,192.6L599.2,193.1L598.2,196.5L599.5,194.3L600.0,197.0L599.4,203.2L598.3,203.2L595.7,200.9L592.6,200.4L591.0,201.5L589.1,201.4L588.1,204.6L583.4,206.0L583.2,206.8L574.7,206.8L574.3,208.1L572.4,208.3L571.0,209.6L571.4,210.7L569.0,212.8L566.2,213.7L563.7,211.7L563.5,208.8L560.6,209.0L563.4,205.3L563.1,202.2L565.9,201.3L565.9,199.6L562.3,197.4L559.5,198.5L557.7,200.5L555.3,201.6L551.0,204.9L548.4,204.8L546.7,206.0L545.3,203.6L542.7,204.6L540.1,202.1L542.8,197.0L540.7,194.8L540.0,190.6L541.8,188.5L541.3,187.5L543.4,182.5L547.0,184.6L549.3,185.0L550.5,183.8L553.8,182.3L555.2,179.7L562.9,177.5L564.2,179.0L560.7,183.3L560.1,185.3L558.9,185.8L558.7,187.8L561.4,188.2L563.1,190.3L566.8,188.5L569.8,189.6L569.9,192.2L570.8,193.0L573.0,192.3L574.2,190.0L573.7,187.6L575.1,187.5L574.1,185.1L574.5,183.5L576.2,182.4L577.6,182.4L578.2,184.2L583.1,185.2L587.1,184.7L590.2,185.5L592.6,186.6L596.6,186.9L597.9,186.4Z", "CE": "M543.4,182.5L541.3,187.5L541.8,188.5L540.0,190.6L540.7,194.8L542.8,197.0L540.1,202.1L538.2,202.8L535.8,205.6L534.2,205.7L533.7,204.0L531.6,202.8L530.2,200.6L527.3,199.4L525.6,197.8L522.6,197.3L519.3,198.1L512.1,197.6L511.5,194.5L514.2,188.5L513.3,187.3L509.8,186.0L508.9,183.4L508.5,179.6L507.3,175.7L506.5,166.4L504.7,164.6L504.9,162.4L503.1,158.4L502.4,152.5L505.0,149.2L504.3,146.8L502.6,144.7L501.8,141.0L500.8,139.4L499.4,135.2L499.8,133.3L502.5,129.5L502.6,128.5L502.2,126.4L504.3,126.5L512.9,125.8L514.2,125.1L522.1,126.2L526.3,129.2L527.7,129.2L529.7,130.9L531.6,131.6L535.9,134.7L537.3,135.0L538.4,136.8L540.1,137.5L542.3,139.6L545.1,140.0L546.6,142.7L548.5,144.2L550.7,147.4L554.5,150.9L555.8,151.3L556.6,153.2L558.2,154.7L562.5,156.2L563.8,158.4L559.1,159.9L556.3,161.9L553.1,168.2L551.0,170.6L549.7,174.7L547.0,177.8L545.2,177.5L542.5,180.7L542.1,182.8L543.4,182.5Z", "SE": "M572.9,249.6L570.3,250.3L565.2,253.5L562.9,256.3L561.0,260.0L559.2,261.3L558.3,263.3L556.6,263.2L555.7,264.9L553.0,265.4L551.0,264.8L550.2,263.4L548.0,262.0L548.5,260.1L547.2,258.9L546.7,256.6L544.9,254.4L545.7,251.6L549.0,252.4L551.9,250.5L551.3,247.2L552.2,245.4L552.4,241.8L549.8,238.4L548.7,234.1L549.6,232.9L555.9,236.4L560.0,237.8L561.1,239.3L565.2,241.4L565.2,242.8L566.8,244.7L568.9,245.8L569.9,245.5L570.6,248.0L572.1,248.1L572.9,249.6Z", "RR": "M161.4,46.5L161.4,43.6L154.6,43.4L151.2,42.7L152.0,39.1L150.4,35.3L148.6,32.6L148.3,28.0L149.0,25.2L147.2,23.2L144.0,21.1L142.0,18.9L139.7,14.9L140.8,14.3L143.1,17.0L146.6,16.5L150.3,17.6L151.2,20.4L152.2,20.8L154.1,19.7L158.0,20.0L159.7,21.3L161.0,19.6L163.2,20.3L167.6,25.4L168.6,25.9L170.7,25.4L171.4,24.4L170.8,20.7L171.2,18.9L174.4,18.6L174.7,17.3L177.1,16.5L180.0,17.8L182.4,16.8L184.0,17.0L187.4,15.4L189.7,15.5L191.4,12.9L193.9,12.5L193.9,11.3L196.1,11.8L198.2,11.4L200.0,8.6L202.1,7.8L204.4,5.6L204.7,4.1L203.6,0.8L206.9,1.4L210.6,0.0L214.2,2.8L213.3,8.4L211.5,11.6L214.7,11.8L218.6,13.7L218.0,16.9L221.0,20.7L218.7,24.2L216.2,25.6L216.4,29.4L214.3,34.0L213.6,39.7L215.1,43.3L215.1,44.8L217.6,46.3L217.4,52.7L219.0,52.9L218.5,54.0L220.1,54.6L225.2,60.0L229.4,61.0L230.9,77.8L217.1,77.6L213.1,77.8L211.6,79.2L208.8,84.8L207.5,89.2L208.6,90.7L208.3,92.1L206.3,92.6L205.6,94.0L202.2,94.3L201.0,91.8L199.2,89.8L196.4,88.8L191.0,91.1L189.9,92.5L189.2,95.8L189.5,97.0L188.6,100.9L188.8,103.1L186.4,102.2L184.6,102.4L182.3,98.9L179.5,97.4L176.2,94.0L174.9,93.2L175.3,92.0L176.8,92.3L177.8,91.1L177.0,88.4L177.0,86.5L175.3,84.7L173.8,81.0L174.6,79.7L173.9,78.5L174.5,74.5L175.2,72.8L174.4,69.8L175.8,68.7L173.1,59.3L170.6,56.4L171.7,54.2L171.8,51.0L169.7,49.9L167.3,49.8L165.1,47.4L162.6,47.6L161.4,46.5Z", "PE": "M593.4,225.1L589.7,224.5L588.5,223.6L584.6,224.8L583.5,224.0L580.2,224.2L578.4,226.0L574.9,228.8L571.3,230.2L567.5,229.5L565.8,230.9L562.2,228.9L557.3,223.9L554.7,224.4L553.8,222.4L552.7,224.2L550.2,226.8L548.4,227.3L546.1,229.5L545.0,224.1L543.6,224.7L542.1,223.3L541.9,221.3L539.9,223.5L539.2,221.5L537.0,220.3L535.2,220.5L534.4,219.6L531.5,218.6L530.5,216.7L528.8,216.2L524.4,218.0L524.2,220.0L521.1,220.6L521.0,222.9L517.6,224.8L515.2,224.7L514.2,228.6L513.0,228.6L509.6,230.5L507.6,229.9L508.7,228.2L508.5,226.2L506.3,225.1L505.8,223.3L505.9,220.5L501.9,218.0L498.7,217.9L501.2,216.8L504.2,213.6L505.7,213.8L508.4,210.9L510.9,209.1L511.6,207.6L511.7,204.6L510.0,203.3L510.7,201.5L509.7,198.1L512.1,197.6L519.3,198.1L522.6,197.3L525.6,197.8L527.3,199.4L530.2,200.6L531.6,202.8L533.7,204.0L534.2,205.7L535.8,205.6L538.2,202.8L540.1,202.1L542.7,204.6L545.3,203.6L546.7,206.0L548.4,204.8L551.0,204.9L555.3,201.6L557.7,200.5L559.5,198.5L562.3,197.4L565.9,199.6L565.9,201.3L563.1,202.2L563.4,205.3L560.6,209.0L563.5,208.8L563.7,211.7L566.2,213.7L569.0,212.8L571.4,210.7L571.0,209.6L572.4,208.3L574.3,208.1L574.7,206.8L583.2,206.8L583.4,206.0L588.1,204.6L589.1,201.4L591.0,201.5L592.6,200.4L595.7,200.9L598.3,203.2L599.6,204.6L598.8,207.8L599.3,209.1L597.2,214.5L597.0,216.2L593.8,223.4L593.4,225.1Z", "PR": "M310.8,483.9L309.3,480.4L308.5,479.5L308.4,477.0L307.4,474.2L304.4,473.0L304.6,472.3L300.5,473.6L299.7,474.5L297.7,473.4L297.6,471.2L300.3,470.3L299.8,469.2L303.8,468.1L300.8,467.7L300.8,466.6L302.2,465.4L300.6,464.7L300.9,462.4L302.2,463.2L301.5,461.5L302.3,460.3L304.0,460.3L302.4,459.3L302.2,457.1L302.9,453.7L301.9,451.7L302.7,450.0L305.0,448.4L305.1,446.4L306.9,440.4L310.0,438.4L311.2,435.5L311.8,432.7L313.5,431.3L318.0,429.3L321.1,427.4L331.5,428.6L333.7,426.7L336.4,428.1L341.0,429.3L343.8,428.8L347.2,430.7L350.5,431.6L351.8,433.5L354.0,433.2L358.8,433.8L363.4,433.3L364.2,435.3L366.7,436.4L368.0,438.8L368.2,441.1L367.6,442.6L369.0,445.8L368.2,448.1L370.8,451.6L373.2,455.6L371.9,458.5L372.1,460.6L375.0,461.0L375.9,460.2L379.3,461.3L381.6,461.1L383.4,462.2L382.6,463.2L382.1,467.0L382.8,467.4L384.3,465.6L386.8,466.5L387.8,469.8L389.4,469.9L388.6,471.1L386.8,473.4L384.6,474.3L385.3,469.8L384.7,470.9L383.5,470.0L384.0,472.5L383.3,473.4L380.8,472.9L379.5,471.6L381.1,474.2L382.4,474.0L384.6,475.0L383.6,475.7L381.3,481.2L373.9,481.1L371.3,482.8L367.1,484.4L362.3,481.0L357.2,481.5L355.2,481.0L352.6,481.6L351.3,484.1L349.0,484.7L346.6,484.0L344.1,485.7L343.6,486.9L344.2,489.7L341.6,491.0L340.6,489.5L335.4,489.4L333.6,489.1L331.0,487.0L324.9,486.2L322.5,485.2L318.2,485.6L315.0,483.6L313.6,484.4L310.8,483.9Z", "ES": "M481.1,406.3L482.0,404.4L482.5,400.9L481.7,400.0L483.9,397.6L488.4,398.0L489.0,397.7L490.1,394.1L491.9,392.8L492.6,389.6L495.7,386.9L496.4,384.2L496.3,381.8L494.9,380.0L494.3,377.6L492.4,377.0L496.9,376.5L497.1,374.8L495.6,373.8L496.3,370.9L494.4,368.4L495.7,366.6L497.9,365.5L499.9,365.5L498.1,363.5L501.7,363.5L505.3,362.8L508.4,364.4L508.7,364.9L515.8,370.3L514.3,375.9L514.1,379.4L514.3,384.7L513.9,387.5L511.7,391.1L508.9,392.6L506.3,396.8L505.1,400.4L503.3,399.5L503.2,400.9L504.8,401.0L503.2,403.7L498.8,408.7L497.3,408.7L495.9,411.6L493.4,415.1L492.0,414.1L489.1,414.1L486.7,413.4L482.9,411.7L482.8,407.2L481.1,406.3Z", "RJ": "M437.4,443.5L435.6,441.1L436.5,440.1L436.8,437.8L441.5,435.9L444.4,435.6L446.0,433.9L445.4,432.2L440.8,432.3L439.5,431.9L437.7,429.1L436.9,428.7L439.3,428.3L442.6,426.7L445.8,426.9L447.6,425.8L451.7,424.4L456.7,424.6L458.5,423.9L462.9,424.5L474.0,420.5L472.8,419.2L474.1,415.7L475.3,414.7L477.6,408.3L479.5,408.3L481.1,406.3L482.8,407.2L482.9,411.7L486.7,413.4L489.1,414.1L492.0,414.1L493.4,415.1L493.3,416.5L491.6,418.9L492.5,425.6L492.0,426.6L488.3,428.4L482.1,430.1L477.5,433.7L476.9,436.2L478.2,437.6L476.8,438.1L475.7,440.1L467.7,439.2L466.6,439.6L461.9,439.3L460.5,438.0L462.0,436.2L461.6,434.4L458.7,435.5L460.1,437.9L459.2,439.4L447.9,440.1L453.7,439.2L450.1,437.4L448.6,437.6L444.8,439.7L446.8,441.3L443.3,441.8L442.7,441.0L444.7,439.6L444.7,438.5L441.9,438.2L438.0,439.7L437.9,441.4L440.6,442.5L439.5,443.7L437.4,443.5Z", "RN": "M543.4,182.5L542.1,182.8L542.5,180.7L545.2,177.5L547.0,177.8L549.7,174.7L551.0,170.6L553.1,168.2L556.3,161.9L559.1,159.9L563.8,158.4L565.3,160.0L569.0,160.3L570.6,162.1L574.1,163.4L576.2,162.7L580.7,163.1L582.7,162.4L590.2,164.1L591.5,165.3L593.9,169.7L595.4,176.8L596.0,178.1L596.1,181.2L596.9,182.0L597.9,186.4L596.6,186.9L592.6,186.6L590.2,185.5L587.1,184.7L583.1,185.2L578.2,184.2L577.6,182.4L576.2,182.4L574.5,183.5L574.1,185.1L575.1,187.5L573.7,187.6L574.2,190.0L573.0,192.3L570.8,193.0L569.9,192.2L569.8,189.6L566.8,188.5L563.1,190.3L561.4,188.2L558.7,187.8L558.9,185.8L560.1,185.3L560.7,183.3L564.2,179.0L562.9,177.5L555.2,179.7L553.8,182.3L550.5,183.8L549.3,185.0L547.0,184.6L543.4,182.5Z", "AM": "M161.4,46.5L162.6,47.6L165.1,47.4L167.3,49.8L169.7,49.9L171.8,51.0L171.7,54.2L170.6,56.4L173.1,59.3L175.8,68.7L174.4,69.8L175.2,72.8L174.5,74.5L173.9,78.5L174.6,79.7L173.8,81.0L175.3,84.7L177.0,86.5L177.0,88.4L177.8,91.1L176.8,92.3L175.3,92.0L174.9,93.2L176.2,94.0L179.5,97.4L182.3,98.9L184.6,102.4L186.4,102.2L188.8,103.1L188.6,100.9L189.5,97.0L189.2,95.8L189.9,92.5L191.0,91.1L196.4,88.8L199.2,89.8L201.0,91.8L202.2,94.3L205.6,94.0L206.3,92.6L208.3,92.1L208.6,90.7L207.5,89.2L208.8,84.8L211.6,79.2L213.1,77.8L217.1,77.6L230.9,77.8L231.2,86.6L233.0,87.8L232.8,90.7L234.7,93.0L237.6,94.5L238.4,97.3L241.9,100.2L247.1,103.4L249.7,105.6L254.7,107.7L258.5,109.0L259.7,110.9L263.8,112.7L263.7,114.6L265.5,115.3L267.6,114.4L269.1,116.1L269.3,117.8L263.6,130.1L240.3,181.1L237.7,184.2L238.8,188.1L241.5,190.5L242.8,194.0L241.7,195.2L241.7,197.9L239.2,201.4L240.3,205.9L239.8,208.1L238.4,210.5L238.7,212.5L236.8,215.7L190.1,216.8L188.4,215.6L186.6,216.5L186.0,218.2L182.1,216.9L181.4,214.5L179.4,214.0L178.3,211.1L175.7,210.8L172.8,206.2L170.0,205.4L160.4,205.5L159.6,208.1L157.6,208.5L157.2,210.0L154.7,210.9L153.6,212.5L154.7,214.0L153.6,216.2L151.6,216.4L151.9,220.3L146.5,220.7L144.6,221.9L141.8,221.4L139.7,223.5L140.0,225.0L137.3,228.5L135.2,225.8L132.3,227.9L129.1,229.0L127.1,230.9L124.5,228.6L117.4,228.7L117.4,230.5L115.9,232.4L112.4,234.2L111.1,235.7L64.9,215.7L56.1,211.3L20.7,203.7L2.9,196.8L3.4,193.3L4.6,191.7L9.3,187.9L11.9,187.1L12.8,185.3L11.1,179.6L12.4,176.3L14.4,173.5L14.7,169.5L15.8,166.4L15.4,164.1L19.9,162.2L25.5,157.8L28.2,155.3L32.7,153.2L34.4,153.6L36.8,152.6L39.0,152.7L40.1,151.4L45.1,151.4L47.1,148.0L50.2,147.0L50.9,148.2L53.3,147.2L55.1,147.7L55.2,149.1L56.8,150.4L57.5,149.3L60.1,149.9L60.7,148.1L68.6,100.0L67.7,97.1L66.4,95.8L65.0,92.8L65.7,91.5L64.9,89.3L60.1,86.0L58.1,83.2L58.4,71.8L65.1,70.8L66.9,69.6L69.1,71.0L72.6,70.9L71.8,69.8L72.3,67.4L70.2,64.7L69.0,64.3L61.5,64.3L61.5,54.0L65.8,53.1L69.3,53.9L87.6,54.0L85.9,52.3L87.2,49.5L88.6,50.8L90.2,53.6L93.5,52.6L96.5,48.8L98.9,47.5L100.4,48.3L103.8,54.3L104.5,57.0L104.1,61.5L104.6,62.8L107.5,62.0L114.7,68.6L118.6,69.7L121.4,68.6L124.9,66.0L127.4,65.9L128.4,67.7L127.4,69.6L127.7,70.9L129.5,70.4L131.3,67.0L133.3,66.7L134.3,63.6L136.1,63.4L138.9,61.4L140.6,61.8L143.3,59.1L145.5,57.7L145.8,59.5L149.9,56.6L150.6,55.6L151.1,51.7L152.0,50.7L155.6,50.3L157.8,48.6L161.0,47.8L161.4,46.5Z", "MT": "M242.8,194.0L244.0,195.1L246.6,199.4L248.4,204.8L250.5,207.6L249.9,210.7L251.5,215.7L253.0,216.2L255.8,218.7L258.8,220.1L259.7,222.9L262.9,223.5L263.9,225.4L265.3,225.1L268.6,226.5L289.5,227.8L347.2,231.4L363.3,232.4L362.3,235.1L361.1,236.4L360.3,240.0L358.9,243.3L357.7,244.8L357.1,249.1L357.4,250.6L355.4,257.8L356.7,259.4L355.9,261.0L356.7,263.6L356.2,265.4L356.3,268.4L357.2,272.1L356.3,275.1L357.3,277.9L359.0,278.4L358.8,280.1L357.4,282.0L357.6,284.4L356.2,287.3L354.7,289.1L354.1,291.2L353.1,291.7L353.1,297.7L352.1,298.0L351.0,302.2L351.4,304.0L349.3,309.7L348.2,311.1L346.1,310.7L343.1,312.3L341.0,314.5L340.6,317.1L337.5,323.6L332.1,325.3L330.9,327.2L327.8,329.1L327.8,330.0L325.8,331.0L326.6,333.1L326.3,334.7L323.7,337.9L320.6,339.8L320.2,342.7L317.9,346.2L317.3,350.5L320.0,357.5L316.3,357.1L310.1,357.3L306.2,355.6L308.2,352.4L309.8,351.6L310.8,345.7L308.7,346.5L306.8,348.8L304.0,351.4L300.3,352.1L299.9,350.7L298.3,349.7L295.9,349.8L292.9,351.8L288.7,352.4L283.5,349.6L282.4,347.9L279.8,347.3L275.1,344.8L273.0,345.3L271.8,346.4L265.5,347.0L264.1,349.5L262.5,351.0L262.3,352.3L260.1,354.2L255.9,355.5L253.2,354.9L251.3,353.6L250.3,350.9L247.1,350.0L243.8,347.6L241.5,346.7L240.2,340.8L239.9,337.7L241.7,335.0L241.8,331.6L240.0,332.3L215.3,332.0L214.6,331.2L213.3,320.2L208.0,314.1L212.6,313.9L212.2,306.7L209.4,301.4L209.3,298.7L210.5,296.9L209.1,294.0L205.3,292.0L210.3,288.2L211.9,282.7L213.0,281.2L214.6,280.5L215.8,277.4L217.1,275.6L218.3,272.0L217.3,269.9L217.3,268.1L215.8,264.8L214.6,264.7L213.9,260.0L216.7,256.6L215.2,252.9L211.0,252.1L209.5,252.4L208.5,250.9L192.9,251.2L192.2,250.5L192.7,242.5L191.3,239.8L191.1,236.7L191.8,233.6L191.1,231.6L192.3,230.2L190.2,225.3L191.4,223.8L191.0,222.4L192.0,219.0L190.1,216.8L236.8,215.7L238.7,212.5L238.4,210.5L239.8,208.1L240.3,205.9L239.2,201.4L241.7,197.9L241.7,195.2L242.8,194.0Z", "DF": "M405.4,328.7L405.4,328.7L405.4,328.7L392.4,328.3L391.0,325.2L392.2,323.6L391.7,322.9L392.7,319.9L403.9,320.3L405.6,321.7L404.6,327.8L405.4,328.7L405.4,328.7L405.4,328.7Z", "AC": "M113.9,236.8L110.2,239.8L107.8,242.4L105.7,243.6L103.7,243.7L101.5,246.0L100.0,246.6L98.1,249.9L95.9,249.3L92.4,250.1L89.6,254.6L84.9,257.0L82.3,257.3L82.7,255.5L72.9,254.8L68.1,255.5L64.5,254.9L59.6,257.5L57.3,257.2L55.7,255.7L54.2,257.0L53.3,238.5L54.6,236.4L53.3,233.9L54.6,231.7L49.5,235.6L47.5,238.2L45.3,239.3L44.8,240.3L42.0,241.5L29.8,242.2L30.2,240.3L28.5,238.3L27.6,234.8L25.7,234.0L19.9,233.1L13.8,233.4L17.4,228.0L17.0,226.4L13.8,222.3L11.0,220.4L10.8,218.5L8.1,216.9L5.7,211.2L4.0,210.3L3.6,209.0L4.9,207.6L2.9,206.6L0.0,203.8L1.7,201.0L4.5,199.7L2.9,196.8L20.7,203.7L56.1,211.3L64.9,215.7L111.1,235.7L113.9,236.8Z", "RO": "M205.3,292.0L202.7,290.4L200.7,290.2L200.4,289.1L198.9,290.0L195.9,289.7L194.2,290.5L192.3,290.0L188.4,290.5L186.0,287.9L183.3,284.2L179.4,284.5L179.0,283.8L176.2,283.1L175.5,282.1L173.7,282.6L171.8,280.4L171.1,280.6L169.5,277.5L167.1,278.3L164.7,277.9L163.1,276.2L160.6,275.1L158.4,274.8L156.7,276.3L153.3,276.1L152.2,275.3L149.5,275.2L148.0,274.0L148.3,272.2L144.5,270.6L143.3,268.8L140.1,268.4L139.0,264.7L137.0,264.6L136.5,261.1L135.4,260.9L133.7,255.5L134.9,252.9L134.6,250.9L133.4,250.2L133.5,248.4L132.7,247.2L133.0,244.5L134.7,240.8L133.9,236.3L134.3,234.7L133.2,232.9L131.9,232.5L130.0,235.0L128.1,233.8L120.8,234.8L116.8,236.3L113.9,236.8L111.1,235.7L112.4,234.2L115.9,232.4L117.4,230.5L117.4,228.7L124.5,228.6L127.1,230.9L129.1,229.0L132.3,227.9L135.2,225.8L137.3,228.5L140.0,225.0L139.7,223.5L141.8,221.4L144.6,221.9L146.5,220.7L151.9,220.3L151.6,216.4L153.6,216.2L154.7,214.0L153.6,212.5L154.7,210.9L157.2,210.0L157.6,208.5L159.6,208.1L160.4,205.5L170.0,205.4L172.8,206.2L175.7,210.8L178.3,211.1L179.4,214.0L181.4,214.5L182.1,216.9L186.0,218.2L186.6,216.5L188.4,215.6L190.1,216.8L192.0,219.0L191.0,222.4L191.4,223.8L190.2,225.3L192.3,230.2L191.1,231.6L191.8,233.6L191.1,236.7L191.3,239.8L192.7,242.5L192.2,250.5L192.9,251.2L208.5,250.9L209.5,252.4L211.0,252.1L215.2,252.9L216.7,256.6L213.9,260.0L214.6,264.7L215.8,264.8L217.3,268.1L217.3,269.9L218.3,272.0L217.1,275.6L215.8,277.4L214.6,280.5L213.0,281.2L211.9,282.7L210.3,288.2L205.3,292.0Z"}};
+const KEYS = ["nome","email","whatsapp","empresa","estado","cidade","confirmacao","cargo","segmento","escolaridade","experiencia","organizacao","porte","faturamento","softwares","licenca","notebook","bim_conhece","bim_usos","ia_freq","ia_usos","temas","decisao","investir","lgpd","patrocinadores"];
+const QFLAT = STEPS.flatMap(s => s.qs);
+QFLAT.forEach((q,i) => q.key = KEYS[i]);
+const QBY = Object.fromEntries(QFLAT.map(q => [q.key, q]));
+const MULTI = new Set(["softwares","bim_usos","ia_usos","temas","investir"]);
+const ORDINAL = new Set(["escolaridade","experiencia","porte","faturamento","notebook","bim_conhece","ia_freq","decisao"]);
+const UF_NOMES = {AC:"Acre",AL:"Alagoas",AP:"Amapá",AM:"Amazonas",BA:"Bahia",CE:"Ceará",DF:"Distrito Federal",ES:"Espírito Santo",GO:"Goiás",MA:"Maranhão",MT:"Mato Grosso",MS:"Mato Grosso do Sul",MG:"Minas Gerais",PA:"Pará",PB:"Paraíba",PR:"Paraná",PE:"Pernambuco",PI:"Piauí",RJ:"Rio de Janeiro",RN:"Rio Grande do Norte",RS:"Rio Grande do Sul",RO:"Rondônia",RR:"Roraima",SC:"Santa Catarina",SP:"São Paulo",SE:"Sergipe",TO:"Tocantins"};
+
+const A = { logged:false, imported:[], live:[], sample:null, fonte:"", seg:"", pres:"", db:null, user:null, canEdit:false, subscribed:false, msg:"" };
+try{ if(API_URL){ A.cred = JSON.parse(sessionStorage.getItem("ipm26_cred") || "null"); A.logged = !!A.cred; } else A.logged = sessionStorage.getItem("ipm26_admin") === "1"; }catch(e){}
+async function fetchApi(){
+  try{
+    const r = await api({ action:"list", user:A.cred.user, pass:A.cred.pass });
+    if(!r.ok){ A.logged = false; A.cred = null; try{ sessionStorage.removeItem("ipm26_cred"); }catch(_){} showView(); return false; }
+    A.live = r.rows || []; A.fonte = "atualizado às " + new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}); renderDash(); return true;
+  }catch(e){ toast("Não consegui buscar as respostas. Verifique a conexão."); return false; }
+}
+
+const norm = s => String(s??"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().trim();
+const pct = (n,t) => t ? Math.round(n/t*100) : 0;
+const fmt = n => n.toLocaleString("pt-BR");
+
+function presenca(c){
+  const s = norm(c);
+  if(!s) return "";
+  if(s.includes("ausencia") || s.startsWith("nao")) return "ausente";
+  if(s.includes("2 dias") || s.includes("dois dias") || (s.includes("13") && s.includes("14"))) return "ambos";
+  if(s.includes("13")) return "d13";
+  if(s.includes("14")) return "d14";
+  if(s.startsWith("sim") || s.includes("confirmo")) return "ambos";
+  return "";
+}
+
+/* ---- rows from the form itself ---- */
+function rowFromAnswers(){
+  const r = { enviado_em: new Date().toISOString(), origem: "formulário" };
+  QFLAT.forEach(q => {
+    const v = answers[q.id];
+    if(q.type === "consent") r[q.key] = !!v;
+    else if(MULTI.has(q.key)) r[q.key] = visible(q) && Array.isArray(v) ? v : [];
+    else r[q.key] = (typeof v === "string" ? v : "") ;
+  });
+  if(isAbsent()) KEYS.slice(7,24).forEach(k => r[k] = MULTI.has(k) ? [] : "");
+  return r;
+}
+async function saveToDb(){
+  try{
+    if(!window.claude?.use) return false;
+    const [db, user] = await Promise.all([claude.use("db"), claude.use("user")]); if(!db || !user) return false;
+    const uid = await user.id(); if(!uid) return false;
+    await db.collection("respostas").doc(uid).set(rowFromAnswers());
+    return true;
+  }catch(e){ return false; }
+}
+
+/* ---- import (Microsoft Forms → Excel/CSV) ---- */
+const MATCH = [
+  ["nome",["nome completo"]],["email",["comunicacoes oficiais","e-mail ("]],["whatsapp",["whatsapp","celular","telefone"]],
+  ["estado",["estado","uf"]],["cidade",["cidade"]],["confirmacao",["confirmacao oficial","confirma"]],
+  ["porte",["porte"]],["faturamento",["faturamento"]],["organizacao",["tipo de organizacao","organizacao"]],
+  ["cargo",["cargo"]],["segmento",["segmento"]],["escolaridade",["escolaridade"]],["experiencia",["experiencia"]],
+  ["softwares",["softwares autodesk","quais softwares"]],["licenca",["licenca"]],["notebook",["notebook"]],
+  ["bim_conhece",["conhece o bim"]],["bim_usos",["usos do bim"]],["ia_freq",["frequencia"]],["ia_usos",["usa ia","para que"]],
+  ["temas",["temas"]],["decisao",["decisoes de compra","decisao"]],["investir",["investir"]],
+  ["patrocinadores",["patrocinador"]],["lgpd",["uso dos meus dados","lgpd","concordo"]],
+  ["empresa",["empresa"]],["nome",["nome"]],["email",["e-mail","email"]],
+];
+function mapHeaders(headers){
+  const used = new Set(), map = {};
+  const H = headers.map(h => ({h, n:norm(h)}));
+  for(const [key,pats] of MATCH){
+    if(map[key]) continue;
+    for(const p of pats){
+      const hit = H.find(x => !used.has(x.h) && (key==="empresa" ? x.n === "empresa" || x.n.startsWith("empresa") : key==="nome" && p==="nome" ? x.n === "nome" : x.n.includes(p)));
+      if(hit){ map[key] = hit.h; used.add(hit.h); break; }
+    }
+  }
+  return map;
+}
+function rowsFromTable(objs){
+  if(!objs.length) return {rows:[], found:0, missing:KEYS};
+  const map = mapHeaders(Object.keys(objs[0]));
+  const rows = objs.map(o => {
+    const r = { origem:"importação" };
+    KEYS.forEach(k => {
+      const raw = map[k] ? o[map[k]] : "";
+      const v = raw == null ? "" : String(raw).trim();
+      if(MULTI.has(k)) r[k] = v ? v.split(/;\s*/).map(x=>x.trim()).filter(Boolean) : [];
+      else if(k==="lgpd"||k==="patrocinadores") r[k] = !!v && !/^n(a|ã)o\b/i.test(v);
+      else if(k==="estado"){ const m = v.toUpperCase().match(/\b([A-Z]{2})\b/); r[k] = m && UF_NOMES[m[1]] ? m[1] : (Object.keys(UF_NOMES).find(u => norm(UF_NOMES[u]) === norm(v)) || ""); }
+      else r[k] = v;
+    });
+    return r;
+  }).filter(r => r.nome || r.email || r.confirmacao);
+  return { rows, found: Object.keys(map).length, missing: KEYS.filter(k => !map[k]) };
+}
+let xlsxLoading = null;
+function loadXLSX(){
+  if(window.XLSX) return Promise.resolve();
+  return xlsxLoading ||= new Promise((ok, bad) => {
+    const s = document.createElement("script");
+    s.src = "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js";
+    s.onload = ok; s.onerror = () => { xlsxLoading = null; bad(new Error("load")); };
+    document.head.appendChild(s);
+  });
+}
+async function importFile(file){
+  toast("Lendo " + file.name + "…");
+  try{
+    await loadXLSX();
+    const buf = await file.arrayBuffer();
+    const wb = XLSX.read(buf, {type:"array"});
+    const objs = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], {defval:""});
+    const {rows, found, missing} = rowsFromTable(objs);
+    if(!rows.length){ toast("Não encontrei respostas nessa planilha. Use a exportação do Microsoft Forms (Respostas → Abrir no Excel)."); return; }
+    A.sample = null; A.imported = rows; A.fonte = file.name;
+    A.msg = `${fmt(rows.length)} respostas importadas de ${file.name}. ${found} de ${KEYS.length} colunas reconhecidas` + (missing.length ? ` (faltaram: ${missing.map(k => QBY[k].label.split(" (")[0]).join(", ")}).` : ".");
+    renderDash();
+    await persistImport(rows, file.name);
+  }catch(e){ toast("Não consegui ler o arquivo. Envie um .xlsx ou .csv exportado do Microsoft Forms."); }
+}
+async function persistImport(rows, fonte){
+  if(!A.db || !A.canEdit){ toast("Planilha carregada só nesta visualização."); return; }
+  try{
+    const col = A.db.collection("lotes");
+    const old = await col.get();
+    for(const d of old.docs) await col.doc(d.id).delete();
+    const size = 100, total = Math.ceil(rows.length/size), quando = new Date().toISOString();
+    for(let i=0;i<total;i++) await col.doc("parte-"+String(i).padStart(3,"0")).set({ parte:i, total, fonte, importado_em:quando, rows: rows.slice(i*size,(i+1)*size) });
+    toast("Planilha salva. Quem tem acesso de edição verá os mesmos resultados.");
+  }catch(e){ toast(e?.code === "quota_exceeded" ? "Limite de armazenamento atingido: a planilha ficou só nesta visualização." : "Não consegui salvar a planilha; ela ficou só nesta visualização."); }
+}
+
+/* ---- sample data (clearly marked) ---- */
+function makeSample(){
+  let seed = 7; const rnd = () => (seed = (seed*16807) % 2147483647) / 2147483647;
+  const pick = (opts, w) => { const t = w.reduce((a,b)=>a+b,0); let x = rnd()*t; for(let i=0;i<opts.length;i++){ if((x -= w[i]) < 0) return opts[i]; } return opts[0]; };
+  const some = (opts, p, max) => { const out = opts.filter((_,i) => rnd() < p[i % p.length]); return max ? out.slice(0,max) : out; };
+  const UFW = {SP:38,MG:12,RJ:9,PR:8,SC:6,RS:5,GO:4,BA:4,DF:3,ES:3,PE:2,CE:2,MT:2,MS:2,PA:1,AM:1,MA:1,TO:1};
+  const cidades = {SP:["São Paulo","Campinas","Santos","Ribeirão Preto","Sorocaba","São José dos Campos"],MG:["Belo Horizonte","Uberlândia","Juiz de Fora"],RJ:["Rio de Janeiro","Niterói"],PR:["Curitiba","Londrina","Maringá"],SC:["Florianópolis","Joinville"],RS:["Porto Alegre","Caxias do Sul"],GO:["Goiânia"],BA:["Salvador"],DF:["Brasília"],ES:["Vitória"],PE:["Recife"],CE:["Fortaleza"],MT:["Cuiabá"],MS:["Campo Grande"],PA:["Belém"],AM:["Manaus"],MA:["São Luís"],TO:["Palmas"]};
+  const o = k => QBY[k].opts;
+  return Array.from({length:146}, (_,i) => {
+    const uf = pick(Object.keys(UFW), Object.values(UFW));
+    const conf = pick(o("confirmacao"), [14,9,62,15]);
+    const aus = conf.includes("ausência");
+    const r = { origem:"exemplo", nome:`Participante de exemplo ${String(i+1).padStart(3,"0")}`, email:`exemplo${i+1}@exemplo.com.br`, whatsapp:"(00) 00000-0000", empresa:`Empresa Exemplo ${1+Math.floor(rnd()*40)}`, estado:uf, cidade: pick(cidades[uf], cidades[uf].map((_,j)=>j===0?4:1)), confirmacao:conf, lgpd:true, patrocinadores: rnd() < .64 };
+    if(aus) return r;
+    Object.assign(r, {
+      cargo: pick(o("cargo"), [6,10,16,34,14,8,4,3]),
+      segmento: pick(o("segmento"), [22,18,20,14,24,2]),
+      escolaridade: pick(o("escolaridade"), [20,48,26,6]),
+      experiencia: pick(o("experiencia"), [14,22,26,24,14]),
+      organizacao: pick(o("organizacao"), [12,38,16,12,6,6,4,4,2]),
+      porte: pick(o("porte"), [34,30,18,10,8]),
+      faturamento: rnd() < .8 ? pick(o("faturamento"), [18,30,26,20,6]) : "",
+      softwares: (()=>{ const s = some(o("softwares").slice(0,9), [.92,.84,.48,.3,.26,.18,.22,.14,.06]); return s.length ? s : ["Nenhum"]; })(),
+      licenca: pick(o("licenca"), [58,20,14,8]),
+      notebook: pick(o("notebook"), [36,48,16]),
+      bim_conhece: pick(o("bim_conhece"), [6,30,36,28]),
+      ia_freq: pick(o("ia_freq"), [8,20,28,30,14]),
+      ia_usos: some(o("ia_usos").slice(0,7), [.7,.36,.4,.22,.28,.12,.46]),
+      temas: some(o("temas"), [.24,.22,.3,.12,.1,.16,.2,.22,.18,.2,.2,.16,.1,.3,.08], 3),
+      decisao: pick(o("decisao"), [24,44,32]),
+    });
+    r.bim_usos = r.bim_conhece === "Não conheço" ? ["Ainda não aplico"] : some(o("bim_usos").slice(0,9), [.66,.34,.4,.5,.16,.12,.58,.3,.2]);
+    if(!r.bim_usos.length) r.bim_usos = ["Ainda não aplico"];
+    r.investir = r.decisao === "Não participo" ? [] : (()=>{ const s = some(o("investir").slice(0,5), [.5,.46,.22,.42,.2]); return s.length ? s : ["Não pretendo investir"]; })();
+    return r;
+  });
+}
+
+/* ---- data access ---- */
+async function connect(){
+  if(A.subscribed) return; A.subscribed = true;
+  if(API_URL){ fetchApi(); setInterval(() => { if(A.logged && location.hash === "#admin" && !document.hidden) fetchApi(); }, 60000); return; }
+  try{
+    const [db, user] = await Promise.all([claude.use("db"), claude.use("user")]);
+    A.db = db; A.user = user;
+    A.canEdit = user ? await user.canEdit() : false;
+    if(!db) { renderDash(); return; }
+    db.collection("lotes").onSnapshot(s => {
+      const docs = s.docs.map(d => d.data()).sort((a,b) => a.parte - b.parte);
+      if(docs.length){ A.imported = docs.flatMap(d => d.rows || []); A.fonte = docs[0].fonte + " · importada em " + new Date(docs[0].importado_em).toLocaleString("pt-BR",{dateStyle:"short",timeStyle:"short"}); }
+      renderDash();
+    }, () => {});
+    db.collection("respostas").onSnapshot(s => { A.live = s.docs.map(d => d.data()); renderDash(); }, () => {});
+  }catch(e){ renderDash(); }
+}
+const allRows = () => A.sample || [...A.imported, ...A.live];
+function filtered(){
+  return allRows().filter(r => (!A.seg || r.segmento === A.seg) && (!A.pres || (A.pres === "conf" ? ["d13","d14","ambos"].includes(presenca(r.confirmacao)) : presenca(r.confirmacao) === A.pres)));
+}
+
+/* ---- rendering ---- */
+function withZeros(key, list){ const have = new Set(list.map(x=>x[0])); const extra = (QBY[key].opts||[]).filter(o => !o.startsWith("As 27") && !have.has(o)).map(o => [o,0]); return [...list, ...extra]; }
+function counts(key, rows){
+  const m = new Map();
+  rows.forEach(r => { const v = r[key]; (Array.isArray(v) ? v : v ? [v] : []).forEach(x => m.set(x, (m.get(x)||0)+1)); });
+  const opts = (QBY[key].opts || []).filter(o => !o.startsWith("As 27"));
+  let list = [...m.entries()];
+  if(ORDINAL.has(key)) list.sort((a,b) => { const ia = opts.indexOf(a[0]), ib = opts.indexOf(b[0]); return (ia<0?99:ia) - (ib<0?99:ib); });
+  else list.sort((a,b) => b[1]-a[1]);
+  return list;
+}
+function barsCard(key, rows, title, extra=""){
+  const base = rows.filter(r => { const v = r[key]; return Array.isArray(v) ? v.length : !!v; }).length;
+  const list = withZeros(key, counts(key, rows)); const max = Math.max(1, ...list.map(x=>x[1]));
+  const sub = (MULTI.has(key) ? "Várias respostas por pessoa · % sobre " : "% sobre ") + fmt(base) + " respostas";
+  return `<section class="card ${extra}"><h3>${esc(title || QBY[key].label)}</h3><div class="sub">${sub}</div>
+    <div class="bars">${list.length ? list.map(([l,n]) => `<div class="brow" data-tip="${esc(l)}: ${fmt(n)} (${pct(n,base)}%)"><span class="bl">${esc(l)}</span><span class="bv">${fmt(n)} · ${pct(n,base)}%</span><div class="bt"><div class="bf" style="width:${n/max*100}%"></div></div></div>`).join("") : `<div class="empty-bars">Sem respostas para esta pergunta no filtro atual.</div>`}</div></section>`;
+}
+
+const PIE = new Set(["confirmacao","segmento","escolaridade","experiencia","porte","faturamento","licenca","notebook","bim_conhece","ia_freq","decisao"]);
+const short = (key, l) => key !== "confirmacao" ? l : ({d13:"Somente 13/11", d14:"Somente 14/11", ambos:"Nos 2 dias", ausente:"Ausência"})[presenca(l)] || l;
+function colorFor(key, label){ const o = (QBY[key].opts||[]); const i = o.indexOf(label); return i < 0 || i > 7 ? "var(--c0)" : `var(--c${i+1})`; }
+function rings(list, base, key, r=40, sw=15){
+  const C = 2*Math.PI*r; let off = 0; const gap = list.length > 1 ? 1.6 : 0;
+  return list.map(([l,n]) => { const len = n/base*C; const seg = `<circle class="seg" cx="60" cy="60" r="${r}" stroke="${colorFor(key,l)}" stroke-dasharray="${Math.max(0,len-gap).toFixed(2)} ${(C-Math.max(0,len-gap)).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 60 60)" data-tip="${esc(short(key,l))}: ${fmt(n)} (${pct(n,base)}%)"></circle>`; off += len; return seg; }).join("");
+}
+function donutCard(key, rows, title, extra=""){
+  const base = rows.filter(r => !!r[key]).length;
+  const list = withZeros(key, counts(key, rows));
+  return `<section class="card ${extra}"><h3>${esc(title || QBY[key].label)}</h3><div class="sub">${base ? `% sobre ${fmt(base)} respostas` : "Aguardando respostas"}</div>
+    ${true ? `<div class="donut"><svg viewBox="0 0 120 120" role="img" aria-label="${esc(title || QBY[key].label)}"><circle cx="60" cy="60" r="40" fill="none" stroke="color-mix(in srgb,var(--ink) 7%,transparent)" stroke-width="15"></circle>${base ? rings(list.filter(x=>x[1]), base, key) : ""}<text class="ctr" x="60" y="62" text-anchor="middle">${fmt(base)}</text><text class="ctr2" x="60" y="74" text-anchor="middle">RESPOSTAS</text></svg>
+    <ul class="dleg">${list.map(([l,n]) => `<li data-tip="${esc(short(key,l))}: ${fmt(n)} (${pct(n,base)}%)"><i style="background:${colorFor(key,l)}"></i><span class="lb">${esc(short(key,l))}</span><span>${pct(n,base)}% · ${fmt(n)}</span></li>`).join("")}</ul></div>` : `<div class="empty-bars">Sem respostas para esta pergunta no filtro atual.</div>`}</section>`;
+}
+const SETOR_METRICAS = [["escolaridade","Formação (escolaridade)"],["cargo","Cargo"],["experiencia","Tempo de experiência"],["porte","Porte da empresa"],["faturamento","Faturamento"],["licenca","Tipo de licença"],["notebook","Notebook atende os softwares"],["bim_conhece","Conhecimento em BIM"],["ia_freq","Frequência de uso de IA"],["decisao","Decisão de compra"]];
+function setorCard(rows){
+  const key = A.smet || "escolaridade";
+  const segs = (QBY.segmento.opts||[]).filter(sg => sg !== "Outro" || rows.some(r => r.segmento === sg));
+  const opts = (QBY[key].opts||[]);
+  return `<section class="card span3"><div class="setor-head"><div><h3>Comparativo por setor</h3><div class="sub" style="margin-bottom:0">Cada pizza mostra um segmento de atuação</div></div>
+    <label class="sub" style="display:flex;flex-direction:column;gap:4px;margin:0">Comparar<select id="smet">${SETOR_METRICAS.map(([k,l]) => `<option value="${k}" ${k===key?"selected":""}>${l}</option>`).join("")}</select></label></div>
+    <ul class="sleg">${opts.map(o => `<li><i style="background:${colorFor(key,o)}"></i>${esc(o)}</li>`).join("")}</ul>
+    <div class="setores">${segs.length ? segs.map(sg => { const rs = rows.filter(r => r.segmento === sg && r[key]); const b = rs.length;
+      return `<div class="mini"><b>${esc(sg)}</b><svg viewBox="0 0 120 120" role="img" aria-label="${esc(sg)}"><circle cx="60" cy="60" r="40" fill="none" stroke="color-mix(in srgb,var(--ink) 7%,transparent)" stroke-width="16"></circle>${b ? rings(counts(key, rs), b, key, 40, 16) : ""}<text class="ctr" x="60" y="66" text-anchor="middle">${fmt(b)}</text></svg><small>${b} respostas</small></div>`; }).join("") : `<div class="empty-bars">Sem segmentos no filtro atual.</div>`}</div></section>`;
+}
+function mapCard(rows){
+  const by = {}; rows.forEach(r => { if(r.estado) by[r.estado] = (by[r.estado]||0)+1; });
+  const tot = Object.values(by).reduce((a,b)=>a+b,0); const max = Math.max(1, ...Object.values(by));
+  const steps = [0,.2,.4,.6,.8].map(f => Math.max(1, Math.ceil(max*f)));
+  const shade = n => !n ? "color-mix(in srgb,var(--ink) 6%,var(--panel-solid))" : `color-mix(in srgb,var(--ink) ${[22,38,55,72,90][Math.min(4, Math.floor((n-1)/max*5))]}%,var(--panel-solid))`;
+  const ufRank = Object.entries(by).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const cid = {}; rows.forEach(r => { if(r.cidade){ const k = r.cidade.trim().toLowerCase().split(/\s+/).map((w,i)=> i && ["de","do","da","dos","das","e"].includes(w) ? w : w.charAt(0).toUpperCase()+w.slice(1)).join(" ") + (r.estado?` (${r.estado})`:""); cid[k] = (cid[k]||0)+1; } });
+  const cRank = Object.entries(cid).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const li = l => l.length ? l.map(([k,n],i)=>`<li><span>${i+1}</span><span>${esc(UF_NOMES[k]||k)}</span><span>${fmt(n)} · ${pct(n,tot)}%</span></li>`).join("") : `<li><span></span><span style="color:var(--ink-3)">Sem dados</span><span></span></li>`;
+  return `<section class="card span3"><h3>De onde vêm os participantes</h3><div class="sub">Pessoas por estado · ${fmt(tot)} respostas com UF</div>
+    <div class="mapwrap"><div class="map"><svg viewBox="0 0 ${BR.w} ${BR.h}" role="img" aria-label="Mapa do Brasil com participantes por estado">${Object.entries(BR.p).map(([uf,d]) => `<path d="${d}" fill="${shade(by[uf]||0)}" data-tip="${UF_NOMES[uf]}: ${fmt(by[uf]||0)} pessoa${(by[uf]||0)===1?"":"s"} (${pct(by[uf]||0,tot)}%)"></path>`).join("")}</svg>
+      <div class="legend"><span>Menos</span>${[0,22,38,55,72,90].map(p=>`<i style="background:color-mix(in srgb,var(--ink) ${p||6}%,var(--panel-solid))"></i>`).join("")}<span>Mais (máx. ${fmt(max)})</span></div></div>
+      <div class="rank"><div><h4>Estados</h4><ol>${li(ufRank)}</ol></div><div><h4>Cidades</h4><ol>${li(cRank)}</ol></div></div></div></section>`;
+}
+function leadsOf(rows){ return rows.filter(r => r.patrocinadores && presenca(r.confirmacao) !== "ausente"); }
+const COLS = [["nome","Nome"],["empresa","Empresa"],["cargo","Cargo"],["segmento","Segmento"],["cidade","Cidade"],["estado","UF"],["email","E-mail"],["whatsapp","WhatsApp"],["decisao","Decisão de compra"],["investir","Pretende investir em"]];
+function leadsCard(rows){
+  const L = leadsOf(rows);
+  return `<section class="card span3"><div class="card-head"><div><h3>Leads para patrocinadores</h3><div class="sub">${fmt(L.length)} pessoas confirmadas autorizaram o compartilhamento do contato (LGPD)</div></div>
+    <div class="acts" style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn ghost sm" data-dl="xlsx">Exportar Excel completo</button></div></div>
+    <div class="tablewrap"><table class="leads"><thead><tr>${COLS.map(c=>`<th>${c[1]}</th>`).join("")}</tr></thead><tbody>${L.slice(0,200).map(r=>`<tr>${COLS.map(([k])=>`<td>${esc(Array.isArray(r[k])?r[k].join("; "):r[k]||"")}</td>`).join("")}</tr>`).join("") || `<tr><td colspan="${COLS.length}" style="color:var(--ink-3)">Nenhum lead no filtro atual.</td></tr>`}</tbody></table></div>
+    ${L.length>200?`<div class="sub" style="margin-top:8px">Mostrando 200 de ${fmt(L.length)}. O Excel traz todos.</div>`:""}</section>`;
+}
+const cellv = v => Array.isArray(v) ? v.join("; ") : v === true ? "Sim" : v === false ? "Não" : (v ?? "");
+const PRES_TXT = {d13:"Somente 13/11", d14:"Somente 14/11", ambos:"2 dias", ausente:"Ausente", "":""};
+let exLoading = null;
+function loadExcelJS(){
+  if(window.ExcelJS) return Promise.resolve();
+  return exLoading ||= new Promise((ok, bad) => {
+    const sc = document.createElement("script");
+    sc.src = "https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js";
+    sc.onload = ok; sc.onerror = () => { exLoading = null; bad(new Error("load")); };
+    document.head.appendChild(sc);
+  });
+}
+async function download(){
+  const rows = filtered();
+  if(!rows.length){ toast("Não há respostas para exportar."); return; }
+  try{ await loadExcelJS(); }catch(e){ toast("Não consegui preparar o Excel. Verifique a conexão e tente de novo."); return; }
+  toast("Gerando o Excel…");
+  const wb = new ExcelJS.Workbook(); wb.creator = "IPM26"; wb.created = new Date();
+  const uniq = names => { const seen = {}; return names.map(n => { n = String(n).slice(0,250); if(seen[n]){ seen[n]++; return n + " " + seen[n]; } seen[n] = 1; return n; }); };
+  function sheet(name, tname, head, data, widths, style = "TableStyleMedium2"){
+    const ws = wb.addWorksheet(name, { views:[{ state:"frozen", ySplit:1 }] });
+    head = uniq(head);
+    if(data.length){
+      ws.addTable({ name:tname, ref:"A1", headerRow:true, totalsRow:false, style:{ theme:style, showRowStripes:true },
+        columns: head.map(h => ({ name:h, filterButton:true })), rows: data.map(r => r.map(v => v ?? "")) });
+    } else {
+      ws.addRow(head).font = { bold:true }; ws.addRow(["Sem registros no filtro atual."]);
+    }
+    widths.forEach((w,i) => ws.getColumn(i+1).width = w);
+    ws.getRow(1).height = 30; ws.getRow(1).alignment = { vertical:"middle", wrapText:true };
+    return ws;
+  }
+  const head = ["Enviado em","Origem","Presença", ...KEYS.map(k => QBY[k].label.split(" (Em qual")[0])];
+  const dataR = rows.map(r => [r.enviado_em ? new Date(r.enviado_em) : "", r.origem || "", PRES_TXT[presenca(r.confirmacao)], ...KEYS.map(k => cellv(r[k]))]);
+  const wsR = sheet("Respostas", "Respostas", head, dataR, head.map((h,i) => i===0 ? 18 : i<3 ? 14 : Math.min(42, Math.max(14, h.length * .9))));
+  wsR.getColumn(1).numFmt = "dd/mm/yyyy hh:mm";
+  const L = leadsOf(rows);
+  sheet("Leads patrocinadores", "Leads", COLS.map(c=>c[1]), L.map(r => COLS.map(([k]) => cellv(r[k]))), [30,26,22,22,18,6,32,18,18,44]);
+  const resp = rows.filter(r => presenca(r.confirmacao) !== "ausente");
+  const P = rows.map(r => presenca(r.confirmacao));
+  const res = [];
+  [["Total de respostas",rows.length],["Presença confirmada",P.filter(p=>p&&p!=="ausente").length],["Público 13/11",P.filter(p=>p==="d13"||p==="ambos").length],["Público 14/11",P.filter(p=>p==="d14"||p==="ambos").length],["Ausências",P.filter(p=>p==="ausente").length],["Leads para patrocinadores",L.length]].forEach(([k,n]) => res.push(["Indicadores",k,n,rows.length ? n/rows.length : 0]));
+  const est = {}; rows.forEach(r => { if(r.estado) est[r.estado] = (est[r.estado]||0)+1; });
+  Object.entries(est).sort((a,b)=>b[1]-a[1]).forEach(([uf,n]) => res.push(["Estado", UF_NOMES[uf]||uf, n, n/rows.length]));
+  KEYS.slice(6,24).forEach(k => {
+    const base = k === "confirmacao" ? rows : resp;
+    const b = base.filter(r => Array.isArray(r[k]) ? r[k].length : !!r[k]).length;
+    counts(k, base).forEach(([l,n]) => res.push([QBY[k].label, l, n, b ? n/b : 0]));
+  });
+  const wsS = sheet("Resumo", "Resumo", ["Pergunta","Resposta","Quantidade","% das respostas"], res, [52,62,14,18], "TableStyleMedium9");
+  wsS.getColumn(4).numFmt = "0%";
+  const buf = await wb.xlsx.writeBuffer();
+  const nome = `IPM26_respostas_${new Date().toISOString().slice(0,10)}${A.sample ? "_EXEMPLO" : ""}.xlsx`;
+  try{
+    const dl = window.claude?.use ? await claude.use("downloads") : null;
+    if(dl){ await dl.save({ filename: nome, data: new Uint8Array(buf) }); return; }
+    const url = URL.createObjectURL(new Blob([buf], {type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}));
+    const a = document.createElement("a"); a.href = url; a.download = nome; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+  }catch(e){ toast("O arquivo não foi salvo."); }
+}
+
+function loginHTML(err=""){
+  return `<div class="login panel">${$(".logo").outerHTML}<div><div class="eyebrow">Área administrativa</div><h2>Painel de resultados</h2></div>
+    <form id="lf" novalidate><label>Login<div class="field"><input id="lu" autocomplete="username" required></div></label>
+    <label>Senha<div class="field"><input id="lp" type="password" autocomplete="current-password" required></div></label>
+    <div class="err" id="lerr">${esc(err)}</div>
+    <button class="btn primary" type="submit">Entrar <span class="arrow">→</span></button></form>
+    <a class="linkbtn" href="#">← Voltar ao formulário</a></div>`;
+}
+function renderDash(){
+  if(location.hash !== "#admin" || !A.logged) return;
+  const rows = filtered(), all = allRows();
+  const segs = [...new Set(all.map(r=>r.segmento).filter(Boolean))].sort();
+  const P = rows.map(r => presenca(r.confirmacao));
+  const c13 = P.filter(p => p==="d13"||p==="ambos").length, c14 = P.filter(p => p==="d14"||p==="ambos").length;
+  const conf = P.filter(p => ["d13","d14","ambos"].includes(p)).length, aus = P.filter(p => p==="ausente").length;
+  const resp = rows.filter(r => presenca(r.confirmacao) !== "ausente");
+  const src = A.sample ? "Dados de exemplo" : A.imported.length || A.live.length ? [A.imported.length ? `Planilha: ${A.fonte}` : "", A.live.length ? `${fmt(A.live.length)} pelo formulário` : ""].filter(Boolean).join(" · ") : "Sem dados";
+  const head = `<header class="dbar">${$(".logo").outerHTML}<div><h2>Painel de resultados</h2><div class="src">${esc(src)}</div></div><div class="grow"></div>
+    <div class="acts">
+    <button type="button" class="btn ghost sm" id="sample">${A.sample ? "Ver dados reais" : "Dados de exemplo"}</button>
+    ${API_URL ? `<button type="button" class="btn ghost sm" id="refresh">Atualizar</button>` : ""}<a class="btn ghost sm" href="#">Formulário</a><button type="button" class="btn ghost sm" id="logout">Sair</button></div></header>`;
+  let body;
+  {
+    body = `${A.sample ? `<div class="banner"><b>EXEMPLO</b> Os números abaixo são fictícios, só para mostrar como o painel funciona.</div>` : ""}
+    ${A.msg ? `<div class="banner">${esc(A.msg)}</div>` : ""}
+    <div class="filters"><label>Segmento<select id="fseg"><option value="">Todos os segmentos</option>${segs.map(s=>`<option ${A.seg===s?"selected":""}>${esc(s)}</option>`).join("")}</select></label>
+      <label>Presença<select id="fpres"><option value="">Todas as respostas</option><option value="conf" ${A.pres==="conf"?"selected":""}>Presença confirmada</option><option value="ambos" ${A.pres==="ambos"?"selected":""}>Nos 2 dias</option><option value="d13" ${A.pres==="d13"?"selected":""}>Só 13/11</option><option value="d14" ${A.pres==="d14"?"selected":""}>Só 14/11</option><option value="ausente" ${A.pres==="ausente"?"selected":""}>Ausências</option></select></label></div>
+    <dl class="kpis">
+      <div class="kpi"><dt>Respostas</dt><dd>${fmt(rows.length)}</dd><small>${A.seg||A.pres ? `de ${fmt(all.length)} no total` : "total recebido"}</small></div>
+      <div class="kpi"><dt>Confirmados</dt><dd>${fmt(conf)}</dd><small>${pct(conf,rows.length)}% das respostas</small></div>
+      <div class="kpi"><dt>Público 13/11</dt><dd>${fmt(c13)}</dd><small>só 13 + 2 dias</small></div>
+      <div class="kpi"><dt>Público 14/11</dt><dd>${fmt(c14)}</dd><small>só 14 + 2 dias</small></div>
+      <div class="kpi"><dt>Ausências</dt><dd>${fmt(aus)}</dd><small>${pct(aus,rows.length)}% das respostas</small></div>
+      <div class="kpi"><dt>Leads</dt><dd>${fmt(leadsOf(rows).length)}</dd><small>autorizaram patrocinadores</small></div>
+    </dl>
+    <div class="dgrid">
+      ${mapCard(rows)}
+      ${donutCard("segmento", resp, "Participantes por segmento")}${donutCard("confirmacao", rows, "Confirmação de presença")}${donutCard("escolaridade", resp, "Formação (escolaridade)")}
+      ${A.seg ? "" : setorCard(resp)}
+      ${barsCard("cargo", resp)}${barsCard("organizacao", resp)}${donutCard("experiencia", resp)}
+      ${donutCard("porte", resp, "Porte da empresa")}${donutCard("faturamento", resp)}${donutCard("licenca", resp)}
+      ${barsCard("softwares", resp, "Softwares Autodesk utilizados", "span2")}${donutCard("notebook", resp, "O notebook atende os softwares?")}
+      ${donutCard("bim_conhece", resp)}${barsCard("bim_usos", resp, null, "span2")}
+      ${donutCard("ia_freq", resp, "Frequência de uso de IA")}${barsCard("ia_usos", resp, "Para que usam IA", "span2")}
+      ${barsCard("temas", resp, "Temas de maior interesse (até 3 por pessoa)", "span3")}
+      ${donutCard("decisao", resp, "Participação nas decisões de compra")}${barsCard("investir", resp, "Pretendem investir nos próximos 12 meses", "span2")}
+      ${leadsCard(rows)}
+    </div>`;
+  }
+  $("#dash").innerHTML = head + body;
+}
+let introDone = false;
+function showView(){
+  const admin = location.hash === "#admin";
+  $("#intro").hidden = admin || introDone;
+  $("#formView").hidden = admin || !introDone; $("#adminView").hidden = !admin;
+  if(!admin) return;
+  if(!A.logged){ $("#dash").innerHTML = loginHTML(); setTimeout(()=>$("#lu")?.focus(), 50); return; }
+  renderDash(); connect();
+}
+let toastT;
+function toast(m){ let t = $("#toast"); if(!t){ t = document.createElement("div"); t.id="toast"; t.className="toast"; t.setAttribute("role","status"); document.body.appendChild(t); } t.textContent = m; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(()=>t.hidden=true, 4200); }
+
+document.addEventListener("submit", async e => {
+  if(e.target.id !== "lf") return; e.preventDefault();
+  if(API_URL){
+    const btn = e.target.querySelector("button"); btn.disabled = true;
+    A.cred = { user: $("#lu").value.trim(), pass: $("#lp").value };
+    try{
+      const r = await api({ action:"list", user:A.cred.user, pass:A.cred.pass });
+      if(r.ok){ A.logged = true; A.live = r.rows || []; A.fonte = "atualizado às " + new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}); try{ sessionStorage.setItem("ipm26_cred", JSON.stringify(A.cred)); }catch(_){} showView(); return; }
+      $("#lerr").textContent = "Login ou senha incorretos.";
+    }catch(err){ $("#lerr").textContent = "Não consegui falar com o servidor. Verifique a conexão."; }
+    A.cred = null; btn.disabled = false; $("#lp").value = ""; $("#lp").focus(); return;
+  }
+  if(!ADMIN_USER){ $("#lerr").textContent = "O painel ainda não está ligado ao servidor. Preencha a URL no arquivo config.js."; return; }
+  if($("#lu").value.trim() === ADMIN_USER && $("#lp").value === ADMIN_PASS){
+    A.logged = true; try{ sessionStorage.setItem("ipm26_admin","1"); }catch(_){}
+    showView();
+  } else { $("#lerr").textContent = "Login ou senha incorretos."; $("#lp").value = ""; $("#lp").focus(); }
+});
+document.addEventListener("change", e => {
+  if(e.target.id === "fseg"){ A.seg = e.target.value; renderDash(); }
+  if(e.target.id === "fpres"){ A.pres = e.target.value; renderDash(); }
+  if(e.target.id === "smet"){ A.smet = e.target.value; renderDash(); }
+  if(e.target.id === "imp" && e.target.files[0]){ importFile(e.target.files[0]); e.target.value = ""; }
+});
+document.addEventListener("click", e => {
+  const t = e.target.closest("button,label[for=imp]"); if(!t) return;
+  if(t.id === "sample"){ A.sample = A.sample ? null : makeSample(); A.msg = ""; A.seg = ""; A.pres = ""; renderDash(); }
+  if(t.id === "logout"){ A.logged = false; A.cred = null; A.live = A.api ? [] : A.live; try{ sessionStorage.removeItem("ipm26_admin"); sessionStorage.removeItem("ipm26_cred"); }catch(_){} location.hash = ""; }
+  if(t.id === "refresh"){ fetchApi().then(ok => ok && toast("Respostas atualizadas.")); }
+  if(t.dataset.dl) download();
+});
+document.addEventListener("keydown", e => { if(e.key === "Enter" && e.target.matches("label[for=imp]")) $("#imp").click(); });
+// hover tooltip for bars and map
+const tip = document.createElement("div"); tip.className = "tip"; tip.hidden = true; document.body.appendChild(tip);
+document.addEventListener("pointermove", e => {
+  const el = e.target.closest?.("[data-tip]");
+  if(!el || $("#adminView").hidden){ tip.hidden = true; return; }
+  tip.textContent = el.dataset.tip; tip.hidden = false;
+  const x = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8), y = Math.max(8, e.clientY - tip.offsetHeight - 12);
+  tip.style.left = x + "px"; tip.style.top = y + "px";
+});
+addEventListener("hashchange", showView);
+$("#go").addEventListener("click", () => {
+  window.ipmMusic?.start();
+  const finish = () => { introDone = true; $("#intro").classList.remove("leaving"); showView(); scrollTo(0,0); $("#panel").querySelector("input,select,button")?.focus({preventScroll:true}); };
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches) finish();
+  else { $("#intro").classList.add("leaving"); setTimeout(finish, 420); }
+});
+showView();
+
+/* ---------- trilha "inspiration" gerada no navegador (original, sem direitos autorais) ---------- */
+(() => {
+  const btn = document.getElementById("music");
+  let ctx = null, master, bus, delay, timer = null, playing = false, step = 0, nextT = 0;
+  const BPM = 84, S16 = 60 / BPM / 4;
+  // I – V – vi – IV em Ré maior: D, A, Bm, G (2 compassos cada)
+  const CH = [
+    {root:50, tones:[62,66,69,74]},
+    {root:45, tones:[61,64,69,73]},
+    {root:47, tones:[62,66,71,74]},
+    {root:43, tones:[62,67,71,74]},
+  ];
+  const ARP = [0,1,2,3,2,1,2,3, 0,2,1,3,2,3,1,2];
+  const hz = m => 440 * Math.pow(2, (m - 69) / 12);
+
+  function impulse(sec){
+    const len = ctx.sampleRate * sec, b = ctx.createBuffer(2, len, ctx.sampleRate);
+    for(let c=0;c<2;c++){ const d = b.getChannelData(c); for(let i=0;i<len;i++) d[i] = (Math.random()*2-1) * Math.pow(1 - i/len, 3); }
+    return b;
+  }
+  function setup(){
+    ctx = new (window.AudioContext || window.webkitAudioContext)();
+    master = ctx.createGain(); master.gain.value = 0; master.connect(ctx.destination);
+    const rev = ctx.createConvolver(); rev.buffer = impulse(3.6);
+    const revGain = ctx.createGain(); revGain.gain.value = .55; rev.connect(revGain).connect(master);
+    bus = ctx.createGain(); bus.gain.value = .9; bus.connect(master); bus.connect(rev);
+    delay = ctx.createDelay(1); delay.delayTime.value = S16 * 3;
+    const fb = ctx.createGain(); fb.gain.value = .32; const dOut = ctx.createGain(); dOut.gain.value = .35;
+    delay.connect(fb).connect(delay); delay.connect(dOut).connect(bus);
+  }
+  function pad(chord, t, dur){
+    const f = ctx.createBiquadFilter(); f.type = "lowpass"; f.frequency.setValueAtTime(700, t); f.frequency.linearRampToValueAtTime(1500, t + dur*.5); f.frequency.linearRampToValueAtTime(800, t + dur); f.Q.value = .4;
+    const g = ctx.createGain(); g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.06, t + 1.4); g.gain.setValueAtTime(.06, t + dur - 1); g.gain.linearRampToValueAtTime(0, t + dur + .6);
+    f.connect(g).connect(bus);
+    chord.tones.slice(0,3).forEach(m => [-6, 6].forEach(det => {
+      const o = ctx.createOscillator(); o.type = "sawtooth"; o.frequency.value = hz(m - 12); o.detune.value = det;
+      o.connect(f); o.start(t); o.stop(t + dur + .7);
+    }));
+  }
+  function bass(chord, t, dur){
+    const o = ctx.createOscillator(), g = ctx.createGain(); o.type = "sine"; o.frequency.value = hz(chord.root - 12);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.22, t + .08); g.gain.exponentialRampToValueAtTime(.08, t + dur*.6); g.gain.linearRampToValueAtTime(0, t + dur);
+    o.connect(g).connect(bus); o.start(t); o.stop(t + dur + .05);
+  }
+  function pluck(m, t, vel){
+    const o = ctx.createOscillator(), o2 = ctx.createOscillator(), g = ctx.createGain(), f = ctx.createBiquadFilter();
+    o.type = "triangle"; o2.type = "sine"; o.frequency.value = hz(m); o2.frequency.value = hz(m + 12);
+    f.type = "lowpass"; f.frequency.setValueAtTime(3200, t); f.frequency.exponentialRampToValueAtTime(600, t + .5);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.09 * vel, t + .005); g.gain.exponentialRampToValueAtTime(.0008, t + .9);
+    const g2 = ctx.createGain(); g2.gain.value = .25; o2.connect(g2).connect(f);
+    o.connect(f).connect(g); g.connect(bus); g.connect(delay);
+    o.start(t); o2.start(t); o.stop(t + 1); o2.stop(t + 1);
+  }
+  function shimmer(t){
+    const len = ctx.sampleRate * .06, b = ctx.createBuffer(1, len, ctx.sampleRate), d = b.getChannelData(0);
+    for(let i=0;i<len;i++) d[i] = (Math.random()*2-1) * (1 - i/len);
+    const s = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+    s.buffer = b; f.type = "highpass"; f.frequency.value = 7000; g.gain.value = .05;
+    s.connect(f).connect(g).connect(bus); s.start(t);
+  }
+  function schedule(){
+    while(nextT < ctx.currentTime + .25){
+      const bar = Math.floor(step / 16), ci = Math.floor(bar / 2) % CH.length, chord = CH[ci], s = step % 16;
+      const section = Math.floor(bar / 8) % 2; // alterna trecho calmo e trecho com arpejo cheio
+      if(s === 0 && bar % 2 === 0){ pad(chord, nextT, S16 * 32); bass(chord, nextT, S16 * 14); }
+      if(s === 8 && bar % 2 === 1) bass(chord, nextT, S16 * 8);
+      const note = chord.tones[ARP[s]] + (s >= 8 && section ? 12 : 0);
+      if(section || s % 2 === 0) pluck(note, nextT, s % 4 === 0 ? 1 : .6);
+      if(section && s % 4 === 2) shimmer(nextT);
+      nextT += S16; step++;
+    }
+  }
+  function start(){
+    if(!ctx) setup();
+    ctx.resume();
+    nextT = ctx.currentTime + .1;
+    master.gain.cancelScheduledValues(ctx.currentTime);
+    master.gain.setValueAtTime(master.gain.value, ctx.currentTime);
+    master.gain.linearRampToValueAtTime(.7, ctx.currentTime + 2.5);
+    timer = setInterval(schedule, 50); schedule();
+    playing = true; paint();
+  }
+  function stop(){
+    if(!ctx) return;
+    master.gain.cancelScheduledValues(ctx.currentTime);
+    master.gain.setValueAtTime(master.gain.value, ctx.currentTime);
+    master.gain.linearRampToValueAtTime(0, ctx.currentTime + .8);
+    clearInterval(timer); timer = null;
+    setTimeout(() => { if(!playing) ctx.suspend(); }, 900);
+    playing = false; paint();
+  }
+  function paint(){
+    btn.classList.toggle("on", playing);
+    btn.setAttribute("aria-pressed", playing);
+    btn.querySelector(".mlabel").textContent = playing ? "Pausar música" : "Tocar música";
+  }
+  window.ipmMusic = { start: () => { if(!playing) start(); } };
+  btn.addEventListener("click", () => playing ? stop() : start());
+  document.addEventListener("visibilitychange", () => { if(!ctx) return; if(document.hidden && playing){ clearInterval(timer); ctx.suspend(); } else if(!document.hidden && playing){ ctx.resume(); nextT = ctx.currentTime + .1; timer = setInterval(schedule, 50); } });
+})();
+
+/* ---------- plexus background ---------- */
+(() => {
+  const cv = document.getElementById("plexus"), ctx = cv.getContext("2d");
+  const SPEED = matchMedia("(prefers-reduced-motion:reduce)").matches ? .6 : 1; const reduce = false; let t0 = 0;
+  let W, H, dpr, pts = [], mouse = {x:-9999,y:-9999}, rgb = "20,23,26";
+  const readColor = () => { rgb = getComputedStyle(document.documentElement).getPropertyValue("--plexus").trim() || rgb; };
+  function size(){
+    dpr = Math.min(devicePixelRatio||1, 2); W = innerWidth; H = innerHeight;
+    cv.width = W*dpr; cv.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    const n = Math.round(Math.min(130, Math.max(40, W*H/14000)));
+    pts = Array.from({length:n}, () => {
+      const z = Math.random(); // depth: 0 far/blurred, 1 near/sharp
+      return {x:Math.random()*W, y:Math.random()*H, z, vx:(Math.random()-.5)*(.35+.9*z)*SPEED, vy:(Math.random()-.5)*(.35+.9*z)*SPEED, ph:Math.random()*6.28};
+    });
+  }
+  function frame(t=0){
+    t0 = t; ctx.clearRect(0,0,W,H);
+    const max = Math.min(190, Math.max(130, W/9));
+    for(const p of pts){
+      p.x += p.vx; p.y += p.vy; if(mouse.x>-999){ const mx=p.x-mouse.x, my=p.y-mouse.y, md=Math.hypot(mx,my); if(md<160 && p.z>.45){ p.x += mx/md*.6; p.y += my/md*.6; } }
+      if(p.x<-40) p.x=W+40; if(p.x>W+40) p.x=-40; if(p.y<-40) p.y=H+40; if(p.y>H+40) p.y=-40;
+    }
+    for(let i=0;i<pts.length;i++){
+      const a = pts[i];
+      for(let j=i+1;j<pts.length;j++){
+        const b = pts[j]; if(Math.abs(a.z-b.z) > .45) continue;
+        const dx=a.x-b.x, dy=a.y-b.y, d=Math.hypot(dx,dy);
+        if(d<max){
+          const z=(a.z+b.z)/2, k=1-d/max;
+          const near = Math.hypot((a.x+b.x)/2-mouse.x,(a.y+b.y)/2-mouse.y) < 180 ? 1.6 : 1;
+          if(z<.45){ ctx.lineWidth = 6; ctx.strokeStyle = `rgba(${rgb},${.035*k})`; }
+          else { ctx.lineWidth = .5+.9*z; ctx.strokeStyle = `rgba(${rgb},${Math.min(.7,(.18+.45*z)*k*near)})`; }
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        }
+      }
+    }
+    for(const p of pts){
+      ctx.beginPath();
+      if(p.z<.45){ ctx.fillStyle=`rgba(${rgb},.05)`; ctx.arc(p.x,p.y,9+8*(.45-p.z),0,7); }
+      else { const pulse = 1 + .35*Math.sin(t0/700 + p.ph); ctx.fillStyle=`rgba(${rgb},${.3+.55*p.z})`; ctx.arc(p.x,p.y,(1.4+2.4*p.z)*pulse,0,7); }
+      ctx.fill();
+    }
+    if(!reduce) requestAnimationFrame(frame);
+  }
+  addEventListener("resize", () => { size(); if(reduce) frame(); });
+  addEventListener("pointermove", e => { mouse.x=e.clientX; mouse.y=e.clientY; });
+  matchMedia("(prefers-color-scheme:dark)").addEventListener?.("change", readColor);
+  new MutationObserver(readColor).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+  readColor(); size(); frame();
+})();
+</script>
+
+</body>
+</html>
