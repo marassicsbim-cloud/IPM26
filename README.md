@@ -17,10 +17,10 @@ O servidor roda de graça no Google, dentro de uma planilha. Use a conta Google 
 1. Acesse [sheets.new](https://sheets.new) e crie uma planilha chamada **IPM26 Respostas**.
 2. No menu, clique em **Extensões → Apps Script**.
 3. Apague o conteúdo do arquivo `Código.gs` e cole todo o conteúdo de `apps-script/Code.gs`.
-4. Confira no topo do código o login, a senha e os 4 e-mails que recebem as fichas. Clique em **Salvar** (ícone de disquete).
+4. Confira no topo do código o login, a senha, o destinatário (PARA) e a cópia (COPIA) dos e-mails. Clique em **Salvar** (ícone de disquete).
 5. No seletor de funções (ao lado de **Depurar**), escolha `testarEmail` e clique em **Executar**.
    - O Google vai pedir autorização: **Revisar permissões → escolha a conta → Avançado → Acessar IPM26 (não seguro) → Permitir**.
-   - Os 4 destinatários devem receber um e-mail de teste com o PDF anexado.
+   - O destinatário e a cópia devem receber um e-mail de teste com o PDF anexado. Rode também `testarChecklist`.
 6. Clique em **Implantar → Nova implantação**.
    - Em **Selecionar tipo** (engrenagem), escolha **App da Web**.
    - **Executar como:** Eu.
@@ -60,7 +60,7 @@ O servidor roda de graça no Google, dentro de uma planilha. Use a conta Google 
 
 1. Abra o site, clique em **Vamos juntos descobrir o propósito** e envie uma resposta de teste.
 2. Confira se a linha apareceu na planilha **IPM26 Respostas**, aba **Respostas**.
-3. Confira se os 4 e-mails receberam a ficha em PDF.
+3. Confira se o destinatário e a cópia receberam a ficha em PDF.
 4. Abra `https://SEU-USUARIO.github.io/ipm26/#admin` (ou clique em **Área administrativa**), entre com o login e a senha e veja o painel. Teste **Exportar Excel completo**.
 5. Apague a linha de teste da planilha antes de divulgar o link.
 
@@ -80,6 +80,6 @@ Se mudar algo no `Code.gs` (destinatários, senha), salve e faça **Implantar �
 ## Bom saber
 
 - **Senha:** o login do painel é conferido no Google, não no site. O código do site é público no GitHub, mas a senha e as respostas não aparecem nele.
-- **Limite de e-mails do Google:** cada e-mail para 4 pessoas conta como 4 envios. Conta Gmail gratuita: até 100 destinatários por dia, ou seja, cerca de **25 respostas por dia**. Conta Google Workspace: até 1.500 por dia, cerca de **375 respostas por dia**. Acima do limite, a resposta continua sendo gravada na planilha; só o e-mail daquele dia deixa de sair.
+- **Limite de e-mails do Google:** cada e-mail vai para 2 pessoas (destinatário + cópia) e conta como 2 envios. Conta Gmail gratuita: até 100 destinatários por dia, ou seja, cerca de **50 e-mails por dia** (respostas + conferências). Conta Google Workspace: até 1.500 por dia. Acima do limite, a resposta continua sendo gravada na planilha; só o e-mail daquele dia deixa de sair.
 - **LGPD:** as respostas ficam na planilha do Google Drive da conta usada na Parte 1. Compartilhe essa planilha só com quem precisa.
 - **Painel:** atualiza sozinho a cada minuto enquanto estiver aberto, e também pelo botão **Atualizar**.
