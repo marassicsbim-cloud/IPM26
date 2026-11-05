@@ -1224,8 +1224,8 @@ function renderDash(){
     <dl class="kpis">
       <div class="kpi"><dt>Respostas</dt><dd>${fmt(rows.length)}</dd><small>${A.seg||A.pres ? `de ${fmt(all.length)} no total` : "total recebido"}</small></div>
       <div class="kpi"><dt>Confirmados</dt><dd>${fmt(conf)}</dd><small>${pct(conf,rows.length)}% das respostas</small></div>
-      <div class="kpi"><dt>Público 13/11</dt><dd>${fmt(c13)}</dd><small>só 13 + 2 dias</small></div>
-      <div class="kpi"><dt>Público 14/11</dt><dd>${fmt(c14)}</dd><small>só 14 + 2 dias</small></div>
+      <div class="kpi"><dt>Público 13/11</dt><dd>${fmt(c13)}</dd></div>
+      <div class="kpi"><dt>Público 14/11</dt><dd>${fmt(c14)}</dd></div>
       <div class="kpi"><dt>Usam CADInfra</dt><dd>${fmt(rows.filter(r => r.cadinfra === "Sim, no dia a dia").length)}</dd><small>no dia a dia</small></div>
       <div class="kpi"><dt>Leads</dt><dd>${fmt(leadsOf(rows).length)}</dd><small>autorizaram patrocinadores</small></div>
     </dl>
