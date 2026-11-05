@@ -519,7 +519,7 @@ table.leads tr:last-child td{border-bottom:0}
   <section class="ipm-box" aria-labelledby="ipm-t">
     <div><div class="eyebrow">Antes do evento · 13 e 14/11/2026</div>
     <h2 id="ipm-t"><b>Instruções</b></h2><p style="margin:10px 0 0;color:color-mix(in srgb,var(--sel-fg) 75%,transparent)">Lista de conferência: marque cada item quando estiver pronto no seu notebook.</p></div>
-    <ul class="ipm-list"><li class=""><label for="c-civil"><input type="checkbox" class="ck" id="c-civil"><i class="box2" aria-hidden="true"></i><span>Civil 3D 2027</span></label></li><li class=""><label for="c-sac"><input type="checkbox" class="ck" id="c-sac"><i class="box2" aria-hidden="true"></i><span>Subassembly Composer 2027</span></label></li><li class=""><label for="c-navis"><input type="checkbox" class="ck" id="c-navis"><i class="box2" aria-hidden="true"></i><span>Navisworks Manage 2027</span></label></li><li class=""><label for="c-cadinfra"><input type="checkbox" class="ck" id="c-cadinfra"><i class="box2" aria-hidden="true"></i><span>CADInfra</span></label></li><li class="win"><label for="c-win"><input type="checkbox" class="ck" id="c-win"><i class="box2" aria-hidden="true"></i><span>Windows atualizado<small>Deixe o Windows Update em dia antes do evento</small></span></label></li></ul>
+    <ul class="ipm-list"><li class=""><label for="c-civil"><input type="checkbox" class="ck" id="c-civil"><i class="box2" aria-hidden="true"></i><span>Civil 3D 2027.1</span></label></li><li class=""><label for="c-sac"><input type="checkbox" class="ck" id="c-sac"><i class="box2" aria-hidden="true"></i><span>Subassembly Composer 2027</span></label></li><li class=""><label for="c-navis"><input type="checkbox" class="ck" id="c-navis"><i class="box2" aria-hidden="true"></i><span>Navisworks Manage 2027</span></label></li><li class=""><label for="c-cadinfra"><input type="checkbox" class="ck" id="c-cadinfra"><i class="box2" aria-hidden="true"></i><span>CADInfra</span></label></li><li class="win"><label for="c-win"><input type="checkbox" class="ck" id="c-win"><i class="box2" aria-hidden="true"></i><span>Windows atualizado<small>Deixe o Windows Update em dia antes do evento</small></span></label></li></ul>
     <div class="ipm-prog"><div class="ipm-track"><div class="ipm-fill" id="ckfill"></div></div><span id="cktxt">0 de 5 concluídos</span></div>
     <form class="ck-send" id="cksend" novalidate>
       <label for="ckmail">E-mail usado na confirmação</label>
@@ -775,7 +775,7 @@ function doneHTML(){
     </dl>
     ${incerto ? `<p style="margin:0;color:var(--ink-2)">Assim que tiver certeza, avise a organização para garantirmos sua vaga. Enquanto isso, você já pode preparar o notebook.</p>` : ""}
     ${incerto ? "" : `<p style="margin:0;color:var(--ink-2)">Sua vaga é intransferível. As informações do evento chegarão no e-mail acima.</p>
-    <div class="prep-cta"><p><b>Instruções:</b> deixe instalado no seu notebook Civil 3D 2027, Subassembly Composer 2027, Navisworks Manage 2027 e CADInfra, com o Windows atualizado.</p><a class="btn primary sm" style="align-self:flex-start" href="#preparacao">Ver detalhes <span class="arrow">→</span></a></div>`}
+    <div class="prep-cta"><p><b>Instruções:</b> deixe instalado no seu notebook Civil 3D 2027.1, Subassembly Composer 2027, Navisworks Manage 2027 e CADInfra, com o Windows atualizado.</p><a class="btn primary sm" style="align-self:flex-start" href="#preparacao">Ver detalhes <span class="arrow">→</span></a></div>`}
     ${finished.sent ? "" : `<div class="demo">Modo de demonstração: as respostas ainda não estão ligadas a uma planilha, então nada foi gravado.</div>`}
     <div><button type="button" class="btn ghost" id="again">Enviar outra resposta</button></div>
   </div>`;
@@ -1229,7 +1229,7 @@ function paintCk(){
   $("#ckfill").style.width = (n/boxes.length*100) + "%";
   $(".ipm-box").classList.toggle("ipm-done", n === boxes.length);
 }
-const CK_ITEMS = [["c-civil","Civil 3D 2027"],["c-sac","Subassembly Composer 2027"],["c-navis","Navisworks Manage 2027"],["c-cadinfra","CADInfra"],["c-win","Windows atualizado"]];
+const CK_ITEMS = [["c-civil","Civil 3D 2027.1"],["c-sac","Subassembly Composer 2027"],["c-navis","Navisworks Manage 2027"],["c-cadinfra","CADInfra"],["c-win","Windows atualizado"]];
 function ckMailSaved(){ try{ return localStorage.getItem("ipm26_ckmail") || ""; }catch(e){ return ckMemMail || ""; } }
 let ckMemMail = "", ckTimer = null;
 function ckSet(msg, cls=""){ const n = $("#ckstatus"); n.textContent = msg; n.className = "ck-status " + cls; }
