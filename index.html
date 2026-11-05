@@ -1096,14 +1096,14 @@ function mapCard(rows){
   const by = {}; rows.forEach(r => { if(r.estado) by[r.estado] = (by[r.estado]||0)+1; });
   const tot = Object.values(by).reduce((a,b)=>a+b,0); const max = Math.max(1, ...Object.values(by));
   const steps = [0,.2,.4,.6,.8].map(f => Math.max(1, Math.ceil(max*f)));
-  const shade = n => !n ? "color-mix(in srgb,var(--ink) 6%,var(--panel-solid))" : `color-mix(in srgb,var(--ink) ${[22,38,55,72,90][Math.min(4, Math.floor((n-1)/max*5))]}%,var(--panel-solid))`;
+  const shade = n => !n ? "color-mix(in srgb,var(--ink) 6%,var(--panel-solid))" : `color-mix(in srgb,var(--c1) ${[28,46,64,82,100][Math.min(4, Math.floor((n-1)/max*5))]}%,var(--panel-solid))`;
   const ufRank = Object.entries(by).sort((a,b)=>b[1]-a[1]);
   const cid = {}; rows.forEach(r => { if(r.cidade){ const k = r.cidade.trim().toLowerCase().split(/\s+/).map((w,i)=> i && ["de","do","da","dos","das","e"].includes(w) ? w : w.charAt(0).toUpperCase()+w.slice(1)).join(" ") + (r.estado?` (${r.estado})`:""); cid[k] = (cid[k]||0)+1; } });
   const cRank = Object.entries(cid).sort((a,b)=>b[1]-a[1]);
   const li = l => l.length ? l.map(([k,n],i)=>`<li><span>${i+1}</span><span>${esc(UF_NOMES[k]||k)}</span><span>${fmt(n)} · ${pct(n,tot)}%</span></li>`).join("") : `<li><span></span><span style="color:var(--ink-3)">Sem dados</span><span></span></li>`;
   return `<section class="card span3"><h3>De onde vêm os participantes</h3><div class="sub">Pessoas por estado · ${fmt(tot)} respostas com UF</div>
     <div class="mapwrap"><div class="map"><div class="map-stats" aria-live="polite"><div><b>${fmt(Object.keys(by).length)}</b><span>${Object.keys(by).length === 1 ? "estado" : "estados"}</span></div><div><b>${fmt(Object.keys(cid).length)}</b><span>${Object.keys(cid).length === 1 ? "cidade" : "cidades"}</span></div></div><svg viewBox="0 0 ${BR.w} ${BR.h}" role="img" aria-label="Mapa do Brasil com participantes por estado">${Object.entries(BR.p).map(([uf,d]) => `<path d="${d}" fill="${shade(by[uf]||0)}" data-tip="${UF_NOMES[uf]}: ${fmt(by[uf]||0)} pessoa${(by[uf]||0)===1?"":"s"} (${pct(by[uf]||0,tot)}%)"></path>`).join("")}</svg>
-      <div class="legend"><span>Menos</span>${[0,22,38,55,72,90].map(p=>`<i style="background:color-mix(in srgb,var(--ink) ${p||6}%,var(--panel-solid))"></i>`).join("")}<span>Mais (máx. ${fmt(max)})</span></div></div>
+      <div class="legend"><span>Menos</span>${[0,28,46,64,82,100].map(p=>`<i style="background:${p ? `color-mix(in srgb,var(--c1) ${p}%,var(--panel-solid))` : "color-mix(in srgb,var(--ink) 6%,var(--panel-solid))"}"></i>`).join("")}<span>Mais (máx. ${fmt(max)})</span></div></div>
       <div class="rank"><div class="rk"><h4>Estados</h4><ol class="rk-list">${li(ufRank)}</ol><div class="rk-hint" aria-hidden="true"></div></div><div class="rk"><h4>Cidades</h4><ol class="rk-list">${li(cRank)}</ol><div class="rk-hint" aria-hidden="true"></div></div></div></div></section>`;
 }
 function leadsOf(rows){ return rows.filter(r => r.patrocinadores && presenca(r.confirmacao) !== "ausente"); }
